@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BE852CF4-4EE5-47D0-BD31-E84EFA2C05AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2E3A0A19-F94A-48E7-AF45-DB4AC1480C36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{10A36B43-DD81-4E7E-B666-26E6BA87DF3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ntreev.AspNetCore.WebSocketIo", "src\Ntreev.AspNetCore.WebSocketIo.csproj", "{36B985C3-A024-4877-A036-6F9F67F28141}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36B985C3-A024-4877-A036-6F9F67F28141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B985C3-A024-4877-A036-6F9F67F28141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B985C3-A024-4877-A036-6F9F67F28141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B985C3-A024-4877-A036-6F9F67F28141}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36B985C3-A024-4877-A036-6F9F67F28141} = {BE852CF4-4EE5-47D0-BD31-E84EFA2C05AE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F33D6805-869B-4552-BE75-DBC10278FA6C}
+	EndGlobalSection
+EndGlobal
