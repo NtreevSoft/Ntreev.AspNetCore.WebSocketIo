@@ -16,7 +16,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
         
         public override OkResult Ok()
         {
-            return new WebSocketIoOkResult(_webSocketIo);
+            return HttpContext.WebSockets.IsWebSocketRequest
+                ? new WebSocketIoOkResult(_webSocketIo)
+                : base.Ok();
         }
 
         public override OkObjectResult Ok(object value)
