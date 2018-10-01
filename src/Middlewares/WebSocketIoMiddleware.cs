@@ -62,11 +62,15 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 {
                     packet = JsonConvert.DeserializeObject<WebSocketIoPacket>(data);
                     if (packet == null) continue;
+
+                    if (string.IsNullOrWhiteSpace(packet.Id))
+                        throw new ArgumentException(nameof(packet.Id));
                 }
                 catch (Exception e)
                 {
                     var error = new WebSocketIoError
                     {
+                        Id = packet.Id,
                         Error = new WebSocketIoErrorDetail(e.Message, e.ToString())
                     };
                     await webSocketIo.Socket.SendDataAsync(error.ToJson());
@@ -89,6 +93,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 {
                     var error = new WebSocketIoError
                     {
+                        Id = packet.Id,
                         Error = new WebSocketIoErrorDetail(e.Message, e.ToString())
                     };
                     await webSocketIo.Socket.SendDataAsync(error.ToJson());

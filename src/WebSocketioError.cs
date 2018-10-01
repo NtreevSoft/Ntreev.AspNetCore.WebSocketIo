@@ -2,6 +2,7 @@
 {
     public class WebSocketIoError
     {
+        public string Id { get; set; }
         public WebSocketIoErrorDetail Error { get; set; }
     }
 

@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using Ntreev.AspNetCore.WebSocketIo.Mvc;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
@@ -15,7 +16,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         
         public override OkResult Ok()
         {
-            return new WebSocketIoOkResult();
+            return new WebSocketIoOkResult(_webSocketIo);
         }
 
         public override OkObjectResult Ok(object value)
@@ -28,7 +29,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         public override NoContentResult NoContent()
         {
             return HttpContext.WebSockets.IsWebSocketRequest 
-                ? new WebSocketioNoContentResult() 
+                ? new WebSocketIoNoContentResult(_webSocketIo) 
                 : base.NoContent();
         }
 

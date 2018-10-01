@@ -1,8 +1,9 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
 
-namespace Ntreev.AspNetCore.WebSocketIo
+namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
     public class WebSocketIoObjectResult : ObjectResult
     {
@@ -21,7 +22,11 @@ namespace Ntreev.AspNetCore.WebSocketIo
 
         public override Task ExecuteResultAsync(ActionContext context)
         {
-            return _webSocketIo.Socket.SendDataAsync(Value.ToJson());
+            var packet = context.HttpContext.Items["web-socket-io-packet"] as WebSocketIoPacket;
+            if (packet == null)
+                throw new NullReferenceException(nameof(packet));
+
+            return _webSocketIo.Socket.SendDataAsync(new WebSocketIoResponse(packet.Id, Value).ToJson());
         }
     }
 }
