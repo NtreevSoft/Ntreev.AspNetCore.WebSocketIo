@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2E3A0A19-F94A-48E7-AF45-DB4AC1480C36}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{10A36B43-DD81-4E7E-B666-26E6BA87DF3E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ntreev.AspNetCore.WebSocketIo", "src\Ntreev.AspNetCore.WebSocketIo.csproj", "{36B985C3-A024-4877-A036-6F9F67F28141}"
 EndProject
