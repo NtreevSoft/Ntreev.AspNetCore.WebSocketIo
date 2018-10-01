@@ -28,6 +28,13 @@ namespace Ntreev.AspNetCore.WebSocketIo
                 : base.Ok(value);
         }
 
+        public virtual OkObjectResult OkEvent(string emitName, object value)
+        {
+            return HttpContext.WebSockets.IsWebSocketRequest
+                ? new WebSocketIoOkEventObjectResult(_webSocketIo, emitName, value)
+                : base.Ok(value);
+        }
+
         public override NoContentResult NoContent()
         {
             return HttpContext.WebSockets.IsWebSocketRequest 
