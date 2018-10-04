@@ -7,6 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
+    /// <summary>
+    /// <see cref="WebSocketController"/> 의 노출되는 API 를 호출하기 위한 바인더를 제공합니다.
+    /// </summary>
     public class WebSocketIoModelBinderProvider : IModelBinderProvider
     {
         private readonly MvcOptions _options;
@@ -16,6 +19,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
             _options = options;
         }
 
+        /// <inheritdoc cref="GetBinder"/>
         public IModelBinder GetBinder(ModelBinderProviderContext context)
         {
             if (context == null)

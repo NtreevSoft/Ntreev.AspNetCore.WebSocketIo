@@ -2,6 +2,7 @@ using System;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
@@ -9,6 +10,9 @@ using Ntreev.AspNetCore.WebSocketIo.Http;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
 {
+    /// <summary>
+    /// 웹소켓 연결에 대한 입출력과 라이프사이클을 담당하는 미들웨어 클래스 입니다.
+    /// </summary>
     public class WebSocketIoMiddleware
     {
         private readonly RequestDelegate _next;
@@ -25,12 +29,14 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
         {
             if (!context.WebSockets.IsWebSocketRequest)
             {
+                // HTTP 연결인 경우 일회용으로 사용할 빈 웹소켓 객체를 생성한다.
                 context.Items["web-socket-io"] = new WebSocketIo(Guid.NewGuid(), new EmptyWebSocket(), _webSocketIoConnectionManager);
                 await _next(context);
                 return;
             }
             
             context = new WebSocketIoHttpContext(context);
+
             var socket = await context.WebSockets.AcceptWebSocketAsync();
             var webSocketIoId = Guid.NewGuid();
             var webSocketIo = new WebSocketIo(webSocketIoId, socket, _webSocketIoConnectionManager);

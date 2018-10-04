@@ -1,8 +1,10 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Security.Principal;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
+    [Obsolete("사용하지 않음. 제거 예정")]
     public class WebSocketIoClaimsPrincipal : ClaimsPrincipal
     {
         private readonly IPrincipal _principal;

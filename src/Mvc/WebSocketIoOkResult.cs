@@ -5,6 +5,9 @@ using Ntreev.AspNetCore.WebSocketIo.Extensions;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
+    /// <summary>
+    /// Ok 상태를 나타내는 클래스 입니다.
+    /// </summary>
     public class WebSocketIoOkResult : OkResult
     {
         private readonly IWebSocketIo _webSocketIo;
@@ -14,10 +17,12 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
             _webSocketIo = webSocketIo;
         }
 
+        /// <inheritdoc cref="ExecuteResult"/>
         public override void ExecuteResult(ActionContext context)
         {
         }
 
+        /// <inheritdoc cref="ExecuteResultAsync"/>
         public override Task ExecuteResultAsync(ActionContext context)
         {
             var packet = context.HttpContext.Items["web-socket-io-packet"] as WebSocketIoPacket;

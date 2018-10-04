@@ -1,34 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Builder
 {
+    /// <summary>
+    /// 브로드캐스트 메시지를 전달하는 빌더입니다.
+    /// </summary>
     public interface IBroadcastBuilder
     {
+        /// <summary>
+        /// 나를 제외한 모두의 웹소켓 목록을 반환합니다.
+        /// </summary>
+        /// <param name="roomKey">채널(방) 이름</param>
         IEnumerable<IWebSocketIo> To(string roomKey);
+
+        /// <summary>
+        /// 나를 포함한 모두의 웹소켓 목록을 반환합니다.
+        /// </summary>
+        /// <param name="roomKey">채널(방) 이름</param>
         IEnumerable<IWebSocketIo> In(string roomKey);
-    }
-
-    public class BroadcastBuilder : IBroadcastBuilder
-    {
-        private readonly IWebSocketIo _webSocketIo;
-        private readonly IWebSocketIoConnectionManager _webSocketIoConnectionManager;
-
-        public BroadcastBuilder(IWebSocketIo webSocketIo,
-            IWebSocketIoConnectionManager webSocketIoConnectionManager)
-        {
-            _webSocketIo = webSocketIo;
-            _webSocketIoConnectionManager = webSocketIoConnectionManager;
-        }
-
-        public IEnumerable<IWebSocketIo> To(string roomKey)
-        {
-            return _webSocketIoConnectionManager.GetClientsInRoom(roomKey);
-        }
-
-        public IEnumerable<IWebSocketIo> In(string roomKey)
-        {
-            return To(roomKey).Where(webSocketIo => webSocketIo != _webSocketIo);
-        }
     }
 }

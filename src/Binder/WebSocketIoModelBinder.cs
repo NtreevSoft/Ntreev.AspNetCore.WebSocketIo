@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
+    /// <summary>
+    /// <see cref="WebSocketController"/> 에서 노출되는 API 의 매개변수를 바인딩 하는 바인더 입니다.
+    /// </summary>
     public class WebSocketIoModelBinder : IModelBinder
     {
         private readonly ILoggerFactory _loggerFactory;
@@ -26,6 +29,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
             _options = options;
         }
 
+        /// <inheritdoc cref="BindModelAsync"/>
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             if (!bindingContext.HttpContext.WebSockets.IsWebSocketRequest)
@@ -37,6 +41,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
                     return Task.CompletedTask;
                 }
 
+                // 바인딩 소스가 HTTP+Body 인 경우
                 if (bindingContext.BindingSource == BindingSource.Body)
                 {
                     var binder = new BodyModelBinder(_options.InputFormatters, 

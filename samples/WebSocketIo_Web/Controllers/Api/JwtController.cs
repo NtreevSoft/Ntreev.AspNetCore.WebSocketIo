@@ -35,7 +35,7 @@ namespace WebSocketIo_Web.Controllers.Api
             });
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationSchema)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationScheme)]
         [Route("authorized-action")]
         public IActionResult AuthorizedAction()
         {
@@ -45,7 +45,7 @@ namespace WebSocketIo_Web.Controllers.Api
             });
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationSchema)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationScheme)]
         [Route("authorized-action2")]
         public IActionResult AuthorizedAction2()
         {
@@ -59,7 +59,7 @@ namespace WebSocketIo_Web.Controllers.Api
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "powerumc@gmail.com"),
+                new Claim(JwtRegisteredClaimNames.Sub, "admin@ntreev.com"),
                 new Claim(ClaimTypes.NameIdentifier, "admin")
             };
 
