@@ -37,13 +37,13 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         public static AuthenticationBuilder AddJwtBearerWithWebSocketIo(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<JwtBearerOptions> configureOptions)
         {
             builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>, JwtBearerPostConfigureOptions>());
-            builder.AddScheme<JwtBearerOptions, JwtWebSocketIoBearerHandler>(authenticationScheme, displayName, configureOptions);
+            builder.AddScheme<JwtBearerOptions, JwtBearerHandler>(authenticationScheme, displayName, configureOptions);
 
             var jwtBearerOptions = new JwtBearerOptions();
             configureOptions(jwtBearerOptions);
 
             builder.Services.Configure<WebSocketIoJwtOption>(options => options.TokenValidationParameters = jwtBearerOptions.TokenValidationParameters);
-            builder.AddScheme<WebSocketIoOptions, WebSocketIoAuthenticationHandler>(WebSocketIoDefaults.AuthenticationSchema, (options => { }));
+            builder.AddScheme<WebSocketIoOptions, WebSocketIoAuthenticationHandler>(WebSocketIoDefaults.AuthenticationScheme, (options => { }));
 
             return builder;
         }

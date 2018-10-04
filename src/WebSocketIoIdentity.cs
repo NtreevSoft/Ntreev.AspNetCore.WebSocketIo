@@ -1,7 +1,9 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Security.Principal;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
+    [Obsolete("사용하지 않음. 제거 예정")]
     public class WebSocketIoIdentity : IIdentity
     {
         private readonly IIdentity _identity;

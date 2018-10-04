@@ -3,12 +3,16 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Authentication
 {
+    /// <summary>
+    /// 웹소켓으로 JWT 인증이 필요한 경우 처리하는 핸들러입니다.
+    /// </summary>
     public class WebSocketIoAuthenticationHandler : AuthenticationHandler<WebSocketIoOptions>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -50,7 +54,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Authentication
                         _jwtOption.Value.TokenValidationParameters, out var validatedToken);
 
                     return Task.FromResult(AuthenticateResult.Success(
-                        new AuthenticationTicket(principal, WebSocketIoDefaults.AuthenticationSchema)));
+                        new AuthenticationTicket(principal, WebSocketIoDefaults.AuthenticationScheme)));
                 }
                 catch(Exception e)
                 {
@@ -60,6 +64,24 @@ namespace Ntreev.AspNetCore.WebSocketIo.Authentication
 
             var result = AuthenticateResult.Fail("Failed WebSocketIo authentication.");
             return Task.FromResult(result);
+        }
+
+        /// <summary>
+        /// Response 동작이 없는 <see cref="HandleForbiddenAsync"/> 메서드로 재정의 합니다.
+        /// </summary>
+        /// <param name="properties">인증 속성</param>
+        protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Response 동작이 없는 <see cref="HandleChallengeAsync"/> 메서드로 재정의 합니다.
+        /// </summary>
+        /// <param name="properties">인증 속성</param>
+        protected override Task HandleChallengeAsync(AuthenticationProperties properties)
+        {
+            return Task.CompletedTask;
         }
     }
 }

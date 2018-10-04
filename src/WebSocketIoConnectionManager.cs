@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
+    /// <summary>
+    /// 웹소켓을 관리하는 매니저 클래스 입니다.
+    /// </summary>
     public class WebSocketIoConnectionManager : IWebSocketIoConnectionManager
     {
         private readonly IDictionary<Guid, IWebSocketIo> _webSocketIos = new ConcurrentDictionary<Guid, IWebSocketIo>();
@@ -15,17 +18,20 @@ namespace Ntreev.AspNetCore.WebSocketIo
 
         private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
+        /// <inheritdoc cref="Add"/>
         public void Add(Guid guid, IWebSocketIo socket)
         {
             _webSocketIos.Add(new KeyValuePair<Guid, IWebSocketIo>(guid, socket));
         }
 
+        /// <inheritdoc cref="GetOrDefault"/>
         public IWebSocketIo GetOrDefault(Guid guid)
         {
             var result = _webSocketIos.TryGetValue(guid, out var socket);
             return result == false ? null : socket;
         }
 
+        /// <inheritdoc cref="RemoveAsync"/>
         public Task RemoveAsync(Guid guid)
         {
             var socket = GetOrDefault(guid);
@@ -37,6 +43,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc cref="JoinAsync"/>
         public async Task JoinAsync(string key, IWebSocketIo webSocketIo)
         {
             await Task.Run(() =>
@@ -62,6 +69,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
             });
         }
 
+        /// <inheritdoc cref="LeaveAsync"/>
         public async Task LeaveAsync(string key, IWebSocketIo webSocketIo)
         {
             await Task.Run(() =>
@@ -84,6 +92,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
             });
         }
 
+        /// <inheritdoc cref="LeaveAllAsync"/>
         public async Task LeaveAllAsync(IWebSocketIo webSocketIo)
         {
             await Task.Run(() =>
@@ -110,6 +119,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
             });
         }
 
+        /// <inheritdoc cref="DisposeAsync"/>
         public async Task DisposeAsync(IWebSocketIo webSocketIo)
         {
             await Task.Run(async () =>
@@ -133,8 +143,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
 
                     webSocketIo.JoinedRooms.Clear();
 
-                    await webSocketIo.Socket.CloseAsync(WebSocketCloseStatus.EndpointUnavailable, "",
-                        CancellationToken.None);
+                    await webSocketIo.Socket.CloseAsync(WebSocketCloseStatus.EndpointUnavailable, "", CancellationToken.None);
                 }
                 finally
                 {
@@ -143,26 +152,33 @@ namespace Ntreev.AspNetCore.WebSocketIo
             });
         }
 
+        /// <inheritdoc cref="GetAll"/>
         public IEnumerable<IWebSocketIo> GetAll()
         {
             return _webSocketIos.Values;
         }
 
+        /// <inheritdoc cref="GetClientsInRoom"/>
         public IEnumerable<IWebSocketIo> GetClientsInRoom(string key)
         {
             if (_rooms.ContainsKey(key)) return _rooms[key].AsEnumerable();
 
             return Enumerable.Empty<IWebSocketIo>();
         }
-        
+
+        /// <inheritdoc cref="Connected"/>
         public event EventHandler<IWebSocketIo> Connected;
+
+        /// <inheritdoc cref="Disconnected"/>
         public event EventHandler<IWebSocketIo> Disconnected;
         
+        /// <inheritdoc cref="OnConnected"/>
         public virtual void OnConnected(object sender, IWebSocketIo webSocketIo)
         {
             Connected?.Invoke(sender, webSocketIo);
         }
 
+        /// <inheritdoc cref="OnDisconnected"/>
         public virtual void OnDisconnected(object sender, IWebSocketIo webSocketIo)
         {
             Disconnected?.Invoke(sender, webSocketIo);

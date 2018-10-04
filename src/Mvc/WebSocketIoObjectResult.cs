@@ -5,6 +5,9 @@ using Ntreev.AspNetCore.WebSocketIo.Extensions;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
+    /// <summary>
+    /// 객체를 직렬화하여 나타내는 클래스 입니다.
+    /// </summary>
     public class WebSocketIoObjectResult : ObjectResult
     {
         private readonly IWebSocketIo _webSocketIo;
@@ -15,11 +18,13 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
             _webSocketIo = webSocketIo;
         }
 
+        /// <inheritdoc cref="ExecuteResult"/>
         public override void ExecuteResult(ActionContext context)
         {
             ExecuteResultAsync(context).GetAwaiter();
         }
 
+        /// <inheritdoc cref="ExecuteResultAsync"/>
         public override Task ExecuteResultAsync(ActionContext context)
         {
             var packet = context.HttpContext.Items["web-socket-io-packet"] as WebSocketIoPacket;

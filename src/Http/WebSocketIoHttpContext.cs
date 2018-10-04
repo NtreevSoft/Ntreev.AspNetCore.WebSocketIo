@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http.Features;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Http
 {
+    /// <summary>
+    /// 웹소켓을 지원하기 위한 <see cref="HttpContext"/> 클래스 입니다.
+    /// </summary>
     public class WebSocketIoHttpContext : HttpContext
     {
         private readonly HttpContext _context;
@@ -17,6 +20,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Http
         {
             _context = context;
             _user = new WebSocketIoClaimsPrincipal(context.User, false);
+            Response = new WebSocketIoHttpResponse(_context);
         }
 
         public override void Abort()
@@ -25,7 +29,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Http
 
         public override IFeatureCollection Features => _context.Features;
         public override HttpRequest Request => _context.Request;
-        public override HttpResponse Response => new WebSocketIoHttpResponse(_context);
+        public override HttpResponse Response { get; }
         public override ConnectionInfo Connection => _context.Connection;
         public override WebSocketManager WebSockets => _context.WebSockets;
         public override AuthenticationManager Authentication => _context.Authentication;

@@ -5,31 +5,24 @@ using Ntreev.AspNetCore.WebSocketIo.Extensions;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
-    /// <summary>
-    /// Ok 상태를 나타내는 클래스 입니다.
-    /// </summary>
-    public class WebSocketIoOkResult : OkResult
+    public class WebSocketIoOkEventObjectResult : WebSocketIoOkObjectResult
     {
         private readonly IWebSocketIo _webSocketIo;
+        private readonly string _emitName;
 
-        public WebSocketIoOkResult(IWebSocketIo webSocketIo)
+        public WebSocketIoOkEventObjectResult(IWebSocketIo webSocketIo, string emitName, object value) : base(webSocketIo, value)
         {
             _webSocketIo = webSocketIo;
+            _emitName = emitName;
         }
 
-        /// <inheritdoc cref="ExecuteResult"/>
-        public override void ExecuteResult(ActionContext context)
-        {
-        }
-
-        /// <inheritdoc cref="ExecuteResultAsync"/>
         public override Task ExecuteResultAsync(ActionContext context)
         {
             var packet = context.HttpContext.Items["web-socket-io-packet"] as WebSocketIoPacket;
             if (packet == null)
                 throw new NullReferenceException(nameof(packet));
 
-            return _webSocketIo.SendDataAsync(new WebSocketIoResponse(packet.Id, new { }).ToJson());
+            return _webSocketIo.Socket.SendDataAsync(new WebSocketIoResponse(packet.Id, WebSocketIoResponseType.Event, _emitName, StatusCode, Value).ToJson());
         }
     }
 }
