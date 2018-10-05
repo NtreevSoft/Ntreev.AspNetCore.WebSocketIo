@@ -30,7 +30,14 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
             if (!context.WebSockets.IsWebSocketRequest)
             {
                 // HTTP 연결인 경우 일회용으로 사용할 빈 웹소켓 객체를 생성한다.
-                context.Items["web-socket-io"] = new WebSocketIo(Guid.NewGuid(), new EmptyWebSocket(), _webSocketIoConnectionManager);
+                var httpWebSocketIoId = Guid.NewGuid();
+                var httpWebSocketIo = new WebSocketIo(httpWebSocketIoId, new EmptyWebSocket(), _webSocketIoConnectionManager);
+                context.Items["web-socket-io"] = httpWebSocketIo;
+                context.Items["web-socket-io-packet"] = new WebSocketIoPacket(Guid.NewGuid().ToString());
+
+                _webSocketIoConnectionManager.Add(httpWebSocketIoId, httpWebSocketIo);
+                _webSocketIoConnectionManager.OnConnected(this, httpWebSocketIo);
+
                 await _next(context);
                 return;
             }

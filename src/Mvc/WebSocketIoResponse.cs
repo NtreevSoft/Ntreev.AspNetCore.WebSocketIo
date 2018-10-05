@@ -56,5 +56,15 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
         /// 서버에서 전송하는 데이터 입니다.
         /// </summary>
         public object Data { get; }
+
+        public static WebSocketIoResponse CreateMessage(IWebSocketIoPacket packet, object data)
+        {
+            return new WebSocketIoResponse(packet.Id, data);
+        }
+
+        public static WebSocketIoResponse CreateEvent(IWebSocketIoPacket packet, string emitName, object data)
+        {
+            return new WebSocketIoResponse(packet.Id, WebSocketIoResponseType.Event, emitName, 200, data);
+        }
     }
 }
