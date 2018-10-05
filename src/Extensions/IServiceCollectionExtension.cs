@@ -51,6 +51,16 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
                         throw new NullReferenceException(nameof(webSocketIo));
 
                     return webSocketIo;
+                })
+                .AddTransient<IWebSocketIoPacket>(provider =>
+                {
+                    var accessor = provider.GetService<IHttpContextAccessor>();
+                    var packet = accessor.HttpContext.Items["web-socket-io-packet"] as IWebSocketIoPacket;
+                    if (packet == null)
+                        throw new NullReferenceException(nameof(packet));
+
+                    return packet;
+
                 });
 
             return mvcBuilder;

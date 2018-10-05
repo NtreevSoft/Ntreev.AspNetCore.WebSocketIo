@@ -6,26 +6,27 @@ namespace Ntreev.AspNetCore.WebSocketIo
     /// <summary>
     /// 웹소켓의 요청 패킷 클래스 입니다.
     /// </summary>
-    public class WebSocketIoPacket
+    public class WebSocketIoPacket : IWebSocketIoPacket
     {
-        /// <summary>
-        /// 요청 고유 Id
-        /// </summary>
+        public WebSocketIoPacket()
+        {
+        }
+
+        public WebSocketIoPacket(string id)
+        {
+            Id = id;
+        }
+
+        /// <inheritdoc cref="Id"/>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 노출된 API 의 경로
-        /// </summary>
+        /// <inheritdoc cref="Path"/>
         public string Path { get; set; }
 
-        /// <summary>
-        /// HTTP Header 에 대응되는 Header 입니다.
-        /// </summary>
-        public IDictionary<string, string> Headers = new Dictionary<string, string>(StringComparer.InvariantCulture);
+        /// <inheritdoc cref="Headers"/>
+        public IDictionary<string, string> Headers { get; } = new Dictionary<string, string>(StringComparer.InvariantCulture);
 
-        /// <summary>
-        /// 요청 데이터 입니다.
-        /// </summary>
+        /// <inheritdoc cref="Data"/>
         public object Data { get; set; }
     }
 }
