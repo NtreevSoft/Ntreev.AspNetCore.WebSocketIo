@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
-using Microsoft.IdentityModel.Tokens;
 using Ntreev.AspNetCore.WebSocketIo.Authentication;
-using Ntreev.AspNetCore.WebSocketIo.Http;
-using Ntreev.AspNetCore.WebSocketIo.Jwt;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {

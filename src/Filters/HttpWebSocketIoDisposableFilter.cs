@@ -52,11 +52,11 @@ namespace Ntreev.AspNetCore.WebSocketIo.Filters
             {
                 // 라이프사이클이 끝나면 소속된 모든 채널(방)과 소켓 목록에서 제거한다.
                 var webSocketIo = _serviceProvider.GetService<IWebSocketIo>();
-                var rooms = new List<string>(webSocketIo.JoinedRooms);
+                var channels = new List<string>(webSocketIo.JoinedChannels);
 
-                foreach (var room in rooms)
+                foreach (var channel in channels)
                 {
-                    await _webSocketIoConnectionManager.LeaveAsync(room, webSocketIo);
+                    await _webSocketIoConnectionManager.LeaveAsync(channel, webSocketIo);
                 }
 
                 _webSocketIoConnectionManager.RemoveAsync(webSocketIo.SocketId).GetAwaiter();

@@ -5,16 +5,16 @@
     /// </summary>
     public class WebSocketIoEventArgs
     {
-        public WebSocketIoEventArgs(string roomKey, IWebSocketIo webSocketIo)
+        public WebSocketIoEventArgs(string channelKey, IWebSocketIo webSocketIo)
         {
-            RoomKey = roomKey;
+            ChannelKey = channelKey;
             WebSocketIo = webSocketIo;
         }
 
         /// <summary>
         /// 채널(방) 키 입니다.
         /// </summary>
-        public string RoomKey { get; }
+        public string ChannelKey { get; }
 
         /// <summary>
         /// <see cref="IWebSocketIo"/> 객체 입니다.

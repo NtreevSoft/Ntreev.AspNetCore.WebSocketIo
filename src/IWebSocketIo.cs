@@ -4,6 +4,7 @@ using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Ntreev.AspNetCore.WebSocketIo.Builder;
+using Ntreev.AspNetCore.WebSocketIo.Mvc;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
@@ -35,7 +36,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         /// <summary>
         /// 웹소켓이 소속된 채널(방) 목록 입니다.
         /// </summary>
-        IList<string> JoinedRooms { get; }
+        IList<string> JoinedChannels { get; }
 
         /// <summary>
         /// 웹소켓 연결이 끊기거나 사용자가 떠나면 발생하는 이벤트 입니다.
@@ -65,7 +66,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         /// </summary>
         /// <param name="data">데이터</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지 여부입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         Task SendDataAsync(string data, bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -73,21 +74,29 @@ namespace Ntreev.AspNetCore.WebSocketIo
         /// </summary>
         /// <param name="obj">데이터 객체</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지 여부입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         /// <returns></returns>
         Task SendDataAsync(object obj, bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// 클라이언트에게 웹소켓 응답 패킷을 전송합니다.
+        /// </summary>
+        /// <param name="response">웹소켓 응답 패킷 입니다.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
+        /// <returns></returns>
+        Task SendDataAsync(WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// 클라이언트가 채널(방)으로 접속합니다.
         /// </summary>
-        /// <param name="roomKey">채널(방) 이름입니다.</param>
-        Task JoinAsync(string roomKey);
+        /// <param name="channelKey">채널(방) 이름입니다.</param>
+        Task JoinAsync(string channelKey);
 
         /// <summary>
         /// 채널(방)에서 클라이언트를 제거합니다.
         /// </summary>
-        /// <param name="roomKey">채널(방) 이름입니다.</param>
-        Task LeaveAsync(string roomKey);
+        /// <param name="channelKey">채널(방) 이름입니다.</param>
+        Task LeaveAsync(string channelKey);
 
         /// <summary>
         /// 모든 채널(방)에서 클라이언트를 제거합니다.

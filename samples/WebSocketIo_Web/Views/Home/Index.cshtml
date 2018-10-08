@@ -1,0 +1,128 @@
+﻿@{
+    Layout = null;
+}
+<style type="text/css">
+    .container {
+        width: 100%
+    }
+    .container h2 {
+        text-align: center;
+    }
+
+    .container .join-container {
+        background-color: bisque;
+        width: 48%;
+        height: 200px;
+        float: left;
+    }
+
+    .container .chat-container {
+        background-color: aqua;
+        width: 48%;
+        height: 300px;
+        float: left;
+    }
+
+    .chat-container .chat-content {
+        height: 250px;
+        background-color: darkcyan;
+    }
+
+    .chat-container .chat-input {
+
+    }
+</style>
+
+<div class="container">
+    <h2>WebSocketIo Sample</h2>
+    <div>
+        <button id="btn-connect" type="button">Connect</button>
+        <label id="lbl-connect-status"></label>
+    </div>
+    <div class="join-container">
+        <div>
+            <label>Create or join name (channel)</label>
+            <input id="txt-channel" type="text" value="hello"/>
+            <button id="btn-join" type="button">Join</button>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat-content">
+        </div>
+        <div class="chat-input">
+            <label>Chat</label>
+            <input id="txt-message" type="text" placeholder="Input message..."/>
+            <button id="btn-submit" type="button">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var socket = null;
+    init();
+
+    function init() {
+        document.querySelector('#btn-connect').addEventListener('click', connect);
+        document.querySelector('#btn-join').addEventListener('click', join);
+        document.querySelector('#btn-submit').addEventListener('click', chat);
+    }
+
+    function clearChannel() {
+        const chatContent = document.querySelector('.chat-content');
+        chatContent.innerHTML = '';
+        setConnectStatus(false);
+    }
+
+    function setConnectStatus(isConnected) {
+        const lblConnectStatus = document.querySelector('#lbl-connect-status');
+        lblConnectStatus.innerText = isConnected ? 'Connected' : 'None';
+    }
+
+    function connect() {
+        clearChannel();
+
+        if (socket && socket.close) {
+            socket.close();
+        }
+
+        socket = new WebSocket('ws://localhost:12345');
+        socket.onopen = function() {
+            setConnectStatus(true);
+        }
+        socket.onclose = function() {
+            setConnectStatus(false);
+        }
+        socket.onmessage = function(event) {
+            console.log(event.data);
+            const packet = JSON.parse(event.data);
+
+            if (packet.emitName) {
+                const chatContent = document.querySelector('.chat-content');
+                chatContent.innerHTML += packet.data + '<br/>';
+            }
+        }
+    }
+
+    function join() {
+        const channelName = document.querySelector('#txt-channel').value;
+        socket.send(JSON.stringify({
+            path: `/api/channels/${channelName}/join`
+        }));
+    }
+
+    function chat() {
+        const channelName = document.querySelector('#txt-channel').value;
+        const $message = document.querySelector('#txt-message');
+        const message = $message.value;
+
+        socket.send(JSON.stringify({
+            path: `/api/channels/${channelName}/chat`,
+            data: {
+                message: message
+            }
+        }));
+
+        $message.value = '';
+    }
+
+</script>

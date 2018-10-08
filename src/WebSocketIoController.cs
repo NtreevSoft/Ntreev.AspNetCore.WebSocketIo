@@ -11,11 +11,11 @@ namespace Ntreev.AspNetCore.WebSocketIo
     /// 이 컨트롤러를 상속하면 HTTP/웹소켓 모두에서 노출된 API 를 호출할 수 있습니다.
     /// </remarks>
     /// </summary>
-    public class WebSocketController : Controller
+    public class WebSocketIoController : Controller
     {
         private readonly IWebSocketIo _webSocketIo;
 
-        public WebSocketController(IWebSocketIo webSocketIo)
+        public WebSocketIoController(IWebSocketIo webSocketIo)
         {
             _webSocketIo = webSocketIo;
         }

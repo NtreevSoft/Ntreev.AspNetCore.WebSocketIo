@@ -2,6 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <Authors>Junil Um</Authors>
+        <Company>Ntreev</Company>
+        <Copyright>Ntreev</Copyright>
+        <PackageTags>dotnet,rest,api,websocket</PackageTags>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <ItemGroup>

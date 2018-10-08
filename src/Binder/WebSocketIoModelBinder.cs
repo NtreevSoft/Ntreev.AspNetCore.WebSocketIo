@@ -1,9 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.Logging;
@@ -12,7 +9,7 @@ using Newtonsoft.Json;
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
     /// <summary>
-    /// <see cref="WebSocketController"/> 에서 노출되는 API 의 매개변수를 바인딩 하는 바인더 입니다.
+    /// <see cref="WebSocketIoController"/> 에서 노출되는 API 의 매개변수를 바인딩 하는 바인더 입니다.
     /// </summary>
     public class WebSocketIoModelBinder : IModelBinder
     {

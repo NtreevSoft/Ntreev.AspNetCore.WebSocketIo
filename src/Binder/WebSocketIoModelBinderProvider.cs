@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
     /// <summary>
-    /// <see cref="WebSocketController"/> 의 노출되는 API 를 호출하기 위한 바인더를 제공합니다.
+    /// <see cref="WebSocketIoController"/> 의 노출되는 API 를 호출하기 위한 바인더를 제공합니다.
     /// </summary>
     public class WebSocketIoModelBinderProvider : IModelBinderProvider
     {

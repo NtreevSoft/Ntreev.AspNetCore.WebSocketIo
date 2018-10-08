@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Ntreev.AspNetCore.WebSocketIo.Builder;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
+using Ntreev.AspNetCore.WebSocketIo.Mvc;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
@@ -18,7 +19,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         public WebSocket Socket { get; }
         public IBroadcastBuilder Broadcast { get; }
         public IPrivateBuilder Private { get; }
-        public IList<string> JoinedRooms { get; }
+        public IList<string> JoinedChannels { get; }
 
         public event EventHandler<WebSocketIoEventArgs> Leaved;
         public event EventHandler Disconnecting;
@@ -29,7 +30,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         {
             SocketId = socketId;
             Socket = socket;
-            JoinedRooms = new List<string>();
+            JoinedChannels = new List<string>();
             _webSocketIoConnectionManager = webSocketIoConnectionManager;
             Broadcast = new BroadcastBuilder(this, webSocketIoConnectionManager);
             Private = new PrivateBuilder(webSocketIoConnectionManager);
@@ -37,10 +38,10 @@ namespace Ntreev.AspNetCore.WebSocketIo
 
         public WebSocketIo(Guid socketId, 
             WebSocket socket, 
-            IEnumerable<string> joinedRooms, 
+            IEnumerable<string> joinedChannels, 
             IWebSocketIoConnectionManager webSocketIoConnectionManager) : this(socketId, socket, webSocketIoConnectionManager)
         {
-            JoinedRooms = new List<string>(joinedRooms);
+            JoinedChannels = new List<string>(joinedChannels);
         }
 
         /// <inheritdoc cref="OnLeaved"/>
@@ -67,16 +68,22 @@ namespace Ntreev.AspNetCore.WebSocketIo
             return Socket.SendDataAsync(obj.ToJson(), endOfMessage, cancellationToken);
         }
 
-        /// <inheritdoc cref="JoinAsync"/>
-        public Task JoinAsync(string roomKey)
+        /// <inheritdoc cref="SendDataAsync(WebSocketIoResponse, CancellationToken)"/>
+        public Task SendDataAsync(WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return _webSocketIoConnectionManager.JoinAsync(roomKey, this);
+            return Socket.SendDataAsync(response.ToJson(), true, cancellationToken);
+        }
+
+        /// <inheritdoc cref="JoinAsync"/>
+        public Task JoinAsync(string channelKey)
+        {
+            return _webSocketIoConnectionManager.JoinAsync(channelKey, this);
         }
 
         /// <inheritdoc cref="LeaveAsync"/>
-        public Task LeaveAsync(string roomKey)
+        public Task LeaveAsync(string channelKey)
         {
-            return _webSocketIoConnectionManager.LeaveAsync(roomKey, this);
+            return _webSocketIoConnectionManager.LeaveAsync(channelKey, this);
         }
 
         /// <inheritdoc cref="LeaveAllAsync"/>

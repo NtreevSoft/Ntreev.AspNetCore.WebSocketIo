@@ -2,7 +2,6 @@ using System;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
@@ -75,9 +74,6 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 {
                     packet = JsonConvert.DeserializeObject<WebSocketIoPacket>(data);
                     if (packet == null) continue;
-
-                    if (string.IsNullOrWhiteSpace(packet.Id))
-                        throw new ArgumentException(nameof(packet.Id));
                 }
                 catch (Exception e)
                 {
