@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Ntreev.AspNetCore.WebSocketIo.Builder;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
+using Ntreev.AspNetCore.WebSocketIo.Mvc;
 
 namespace Ntreev.AspNetCore.WebSocketIo
 {
@@ -65,6 +66,12 @@ namespace Ntreev.AspNetCore.WebSocketIo
         public Task SendDataAsync(object obj, bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Socket.SendDataAsync(obj.ToJson(), endOfMessage, cancellationToken);
+        }
+
+        /// <inheritdoc cref="SendDataAsync(WebSocketIoResponse, CancellationToken)"/>
+        public Task SendDataAsync(WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Socket.SendDataAsync(response.ToJson(), true, cancellationToken);
         }
 
         /// <inheritdoc cref="JoinAsync"/>
