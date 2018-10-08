@@ -6,11 +6,11 @@ using WebSocketIo_Web.Models;
 namespace WebSocketIo_Web.Controllers.Api
 {
     [Route("/api/test")]
-    public class TestController : WebSocketController
+    public class TestIoController : WebSocketIoController
     {
         private readonly IWebSocketIo _webSocketIo;
 
-        public TestController(IWebSocketIo webSocketIo) : base(webSocketIo)
+        public TestIoController(IWebSocketIo webSocketIo) : base(webSocketIo)
         {
             _webSocketIo = webSocketIo;
         }

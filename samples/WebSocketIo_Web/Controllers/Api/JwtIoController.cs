@@ -14,12 +14,12 @@ using WebSocketIo_Web.Models;
 namespace WebSocketIo_Web.Controllers.Api
 {
     [Route("/api/jwt")]
-    public class JwtController : WebSocketController
+    public class JwtIoController : WebSocketIoController
     {
         private readonly IWebSocketIo _webSocketIo;
         private readonly IConfiguration _configuration;
 
-        public JwtController(IWebSocketIo webSocketIo,
+        public JwtIoController(IWebSocketIo webSocketIo,
             IConfiguration configuration) : base(webSocketIo)
         {
             _webSocketIo = webSocketIo;
