@@ -15,8 +15,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using Ntreev.AspNetCore.WebSocketIo.Extensions;
-using Ntreev.AspNetCore.WebSocketIo.Http;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Jwt
 {

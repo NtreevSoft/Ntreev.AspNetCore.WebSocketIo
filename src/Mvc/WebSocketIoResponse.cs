@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ntreev.AspNetCore.WebSocketIo.Mvc
+﻿namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
     /// <summary>
     /// 웹소켓의 응답 패킷 클래스 입니다.

@@ -2,7 +2,6 @@ using System;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
 using Ntreev.AspNetCore.WebSocketIo.Authentication;
 using Ntreev.AspNetCore.WebSocketIo.Binder;
