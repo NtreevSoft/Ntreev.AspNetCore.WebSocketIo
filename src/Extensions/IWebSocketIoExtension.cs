@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Ntreev.AspNetCore.WebSocketIo.Mvc;
 
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {
@@ -16,7 +18,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         /// <param name="webSocketIo"><see cref="IWebSocketIo"/></param>
         /// <param name="data">데이터 입니다.</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지의 여부 입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         public static Task SendDataAsync(this IWebSocketIo webSocketIo, string data, bool endOfMessage = true,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -29,7 +31,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         /// <param name="webSocketIo"><see cref="IWebSocketIo"/></param>
         /// <param name="obj">객체 입니다.</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지의 여부 입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         public static Task SendDataAsync(this IWebSocketIo webSocketIo, object obj, bool endOfMessage = true,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -42,7 +44,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         /// <param name="webSocketIos"><see cref="IWebSocketIo"/> 목록입니다.</param>
         /// <param name="data">데이터 입니다.</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지의 여부 입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         public static async Task SendDataAsync(this IEnumerable<IWebSocketIo> webSocketIos, string data,
             bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -58,7 +60,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         /// <param name="webSocketIos"><see cref="IWebSocketIo"/> 목록입니다.</param>
         /// <param name="obj">데이터 객체 입니다.</param>
         /// <param name="endOfMessage">메시지의 끝인지 아닌지의 여부 입니다.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
         /// <returns></returns>
         public static async Task SendDataAsync(this IEnumerable<IWebSocketIo> webSocketIos, object obj,
             bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken))
@@ -66,6 +68,22 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
             foreach (var webSocketIo in webSocketIos)
             {
                 await SendDataAsync(webSocketIo, obj, endOfMessage, cancellationToken);
+            }
+        }
+
+        /// <summary>
+        /// 클라이언트에게 데이터를 전송합니다.
+        /// </summary>
+        /// <param name="webSocketIos"><see cref="IWebSocketIo"/> 목록입니다.</param>
+        /// <param name="response">응답 패킷 입니다.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> 입니다.</param>
+        /// <returns></returns>
+        public static async Task SendDataAsync(this IEnumerable<IWebSocketIo> webSocketIos,
+            WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            foreach (var webSocketIo in webSocketIos)
+            {
+                await SendDataAsync(webSocketIo, response, true, cancellationToken);
             }
         }
 

@@ -75,9 +75,6 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 {
                     packet = JsonConvert.DeserializeObject<WebSocketIoPacket>(data);
                     if (packet == null) continue;
-
-                    if (string.IsNullOrWhiteSpace(packet.Id))
-                        throw new ArgumentException(nameof(packet.Id));
                 }
                 catch (Exception e)
                 {

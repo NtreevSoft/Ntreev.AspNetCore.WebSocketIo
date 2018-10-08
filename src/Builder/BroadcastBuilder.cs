@@ -19,13 +19,13 @@ namespace Ntreev.AspNetCore.WebSocketIo.Builder
         /// <inheritdoc cref="IBroadcastBuilder.To"/>
         public IEnumerable<IWebSocketIo> To(string roomKey)
         {
-            return _webSocketIoConnectionManager.GetClientsInRoom(roomKey);
+            return In(roomKey).Where(webSocketIo => webSocketIo != _webSocketIo);
         }
 
         /// <inheritdoc cref="IBroadcastBuilder.In"/>
         public IEnumerable<IWebSocketIo> In(string roomKey)
         {
-            return To(roomKey).Where(webSocketIo => webSocketIo != _webSocketIo);
+            return _webSocketIoConnectionManager.GetClientsInRoom(roomKey);
         }
     }
 }
