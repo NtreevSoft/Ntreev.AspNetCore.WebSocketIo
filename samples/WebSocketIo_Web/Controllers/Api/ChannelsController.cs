@@ -62,14 +62,14 @@ namespace WebSocketIo_Web.Controllers.Api
 
         private async void WebSocketIoOnLeaved(object sender, WebSocketIoEventArgs e)
         {
-            await e.WebSocketIo.Broadcast.To(e.RoomKey).SendDataAsync($"Leaved {e.WebSocketIo.SocketId} in {e.RoomKey}");
+            await e.WebSocketIo.Broadcast.To(e.ChannelKey).SendDataAsync($"Leaved {e.WebSocketIo.SocketId} in {e.ChannelKey}");
         }
 
         private async void WebSocketIoOnDisconnecting(object sender, EventArgs e)
         {
-            foreach (var room in _webSocketIo.JoinedRooms)
+            foreach (var channel in _webSocketIo.JoinedChannels)
             {
-                await _webSocketIo.Broadcast.In(room).SendDataAsync($"Disconnect {_webSocketIo.SocketId} in {room} room");
+                await _webSocketIo.Broadcast.In(channel).SendDataAsync($"Disconnect {_webSocketIo.SocketId} in {channel} room");
             }
         }
     }

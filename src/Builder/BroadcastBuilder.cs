@@ -17,15 +17,15 @@ namespace Ntreev.AspNetCore.WebSocketIo.Builder
         }
 
         /// <inheritdoc cref="IBroadcastBuilder.To"/>
-        public IEnumerable<IWebSocketIo> To(string roomKey)
+        public IEnumerable<IWebSocketIo> To(string channelKey)
         {
-            return In(roomKey).Where(webSocketIo => webSocketIo != _webSocketIo);
+            return In(channelKey).Where(webSocketIo => webSocketIo != _webSocketIo);
         }
 
         /// <inheritdoc cref="IBroadcastBuilder.In"/>
-        public IEnumerable<IWebSocketIo> In(string roomKey)
+        public IEnumerable<IWebSocketIo> In(string channelKey)
         {
-            return _webSocketIoConnectionManager.GetClientsInRoom(roomKey);
+            return _webSocketIoConnectionManager.GetClientsInChannel(channelKey);
         }
     }
 }

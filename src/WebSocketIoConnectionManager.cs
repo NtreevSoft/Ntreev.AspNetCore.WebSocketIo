@@ -14,7 +14,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
     public class WebSocketIoConnectionManager : IWebSocketIoConnectionManager
     {
         private readonly IDictionary<Guid, IWebSocketIo> _webSocketIos = new ConcurrentDictionary<Guid, IWebSocketIo>();
-        private readonly IDictionary<string, IList<IWebSocketIo>> _rooms = new ConcurrentDictionary<string, IList<IWebSocketIo>>();
+        private readonly IDictionary<string, IList<IWebSocketIo>> _channels = new ConcurrentDictionary<string, IList<IWebSocketIo>>();
 
         private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
@@ -51,15 +51,15 @@ namespace Ntreev.AspNetCore.WebSocketIo
                 try
                 {
                     _semaphoreSlim.Wait();
-                    if (!_rooms.ContainsKey(key))
+                    if (!_channels.ContainsKey(key))
                     {
-                        _rooms[key] = new List<IWebSocketIo>();
+                        _channels[key] = new List<IWebSocketIo>();
                     }
 
-                    if (!_rooms[key].Contains(webSocketIo))
+                    if (!_channels[key].Contains(webSocketIo))
                     {
-                        _rooms[key].Add(webSocketIo);
-                        webSocketIo.JoinedRooms.Add(key);
+                        _channels[key].Add(webSocketIo);
+                        webSocketIo.JoinedChannels.Add(key);
                     }
                 }
                 finally
@@ -78,10 +78,10 @@ namespace Ntreev.AspNetCore.WebSocketIo
                 {
                     _semaphoreSlim.Wait();
 
-                    if (_rooms[key].Contains(webSocketIo))
+                    if (_channels[key].Contains(webSocketIo))
                     {
-                        _rooms[key].Remove(webSocketIo);
-                        webSocketIo.JoinedRooms.Remove(key);
+                        _channels[key].Remove(webSocketIo);
+                        webSocketIo.JoinedChannels.Remove(key);
                         webSocketIo.OnLeaved(this, new WebSocketIoEventArgs(key, webSocketIo));
                     }
                 }
@@ -101,16 +101,16 @@ namespace Ntreev.AspNetCore.WebSocketIo
                 {
                     _semaphoreSlim.Wait();
 
-                    foreach (var room in webSocketIo.JoinedRooms)
+                    foreach (var channel in webSocketIo.JoinedChannels)
                     {
-                        if (_rooms.ContainsKey(room))
+                        if (_channels.ContainsKey(channel))
                         {
-                            _rooms[room].Remove(webSocketIo);
-                            webSocketIo.OnLeaved(this, new WebSocketIoEventArgs(room, webSocketIo));
+                            _channels[channel].Remove(webSocketIo);
+                            webSocketIo.OnLeaved(this, new WebSocketIoEventArgs(channel, webSocketIo));
                         }
                     }
 
-                    webSocketIo.JoinedRooms.Clear();
+                    webSocketIo.JoinedChannels.Clear();
                 }
                 finally
                 {
@@ -133,15 +133,15 @@ namespace Ntreev.AspNetCore.WebSocketIo
                         _webSocketIos.Remove(webSocketIo.SocketId);
                     }
 
-                    foreach (var room in webSocketIo.JoinedRooms)
+                    foreach (var channel in webSocketIo.JoinedChannels)
                     {
-                        if (_rooms.ContainsKey(room))
+                        if (_channels.ContainsKey(channel))
                         {
-                            _rooms[room].Remove(webSocketIo);
+                            _channels[channel].Remove(webSocketIo);
                         }
                     }
 
-                    webSocketIo.JoinedRooms.Clear();
+                    webSocketIo.JoinedChannels.Clear();
 
                     await webSocketIo.Socket.CloseAsync(WebSocketCloseStatus.EndpointUnavailable, "", CancellationToken.None);
                 }
@@ -158,10 +158,10 @@ namespace Ntreev.AspNetCore.WebSocketIo
             return _webSocketIos.Values;
         }
 
-        /// <inheritdoc cref="GetClientsInRoom"/>
-        public IEnumerable<IWebSocketIo> GetClientsInRoom(string key)
+        /// <inheritdoc cref="GetClientsInChannel"/>
+        public IEnumerable<IWebSocketIo> GetClientsInChannel(string key)
         {
-            if (_rooms.ContainsKey(key)) return _rooms[key].AsEnumerable();
+            if (_channels.ContainsKey(key)) return _channels[key].AsEnumerable();
 
             return Enumerable.Empty<IWebSocketIo>();
         }

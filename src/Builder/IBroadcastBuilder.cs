@@ -10,13 +10,13 @@ namespace Ntreev.AspNetCore.WebSocketIo.Builder
         /// <summary>
         /// 나를 제외한 모두의 웹소켓 목록을 반환합니다.
         /// </summary>
-        /// <param name="roomKey">채널(방) 이름</param>
-        IEnumerable<IWebSocketIo> To(string roomKey);
+        /// <param name="channelKey">채널(방) 이름</param>
+        IEnumerable<IWebSocketIo> To(string channelKey);
 
         /// <summary>
         /// 나를 포함한 모두의 웹소켓 목록을 반환합니다.
         /// </summary>
-        /// <param name="roomKey">채널(방) 이름</param>
-        IEnumerable<IWebSocketIo> In(string roomKey);
+        /// <param name="channelKey">채널(방) 이름</param>
+        IEnumerable<IWebSocketIo> In(string channelKey);
     }
 }

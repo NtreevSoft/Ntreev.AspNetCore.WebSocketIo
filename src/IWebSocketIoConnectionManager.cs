@@ -58,7 +58,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         /// 채널(방)의 모든 웹소켓을 반환합니다.
         /// </summary>
         /// <param name="key">채널(방) 키 입니다.</param>
-        IEnumerable<IWebSocketIo> GetClientsInRoom(string key);
+        IEnumerable<IWebSocketIo> GetClientsInChannel(string key);
 
         /// <summary>
         /// 모든 웹소켓을 반환합니다.

@@ -19,7 +19,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         public WebSocket Socket { get; }
         public IBroadcastBuilder Broadcast { get; }
         public IPrivateBuilder Private { get; }
-        public IList<string> JoinedRooms { get; }
+        public IList<string> JoinedChannels { get; }
 
         public event EventHandler<WebSocketIoEventArgs> Leaved;
         public event EventHandler Disconnecting;
@@ -30,7 +30,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         {
             SocketId = socketId;
             Socket = socket;
-            JoinedRooms = new List<string>();
+            JoinedChannels = new List<string>();
             _webSocketIoConnectionManager = webSocketIoConnectionManager;
             Broadcast = new BroadcastBuilder(this, webSocketIoConnectionManager);
             Private = new PrivateBuilder(webSocketIoConnectionManager);
@@ -38,10 +38,10 @@ namespace Ntreev.AspNetCore.WebSocketIo
 
         public WebSocketIo(Guid socketId, 
             WebSocket socket, 
-            IEnumerable<string> joinedRooms, 
+            IEnumerable<string> joinedChannels, 
             IWebSocketIoConnectionManager webSocketIoConnectionManager) : this(socketId, socket, webSocketIoConnectionManager)
         {
-            JoinedRooms = new List<string>(joinedRooms);
+            JoinedChannels = new List<string>(joinedChannels);
         }
 
         /// <inheritdoc cref="OnLeaved"/>
@@ -75,15 +75,15 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <inheritdoc cref="JoinAsync"/>
-        public Task JoinAsync(string roomKey)
+        public Task JoinAsync(string channelKey)
         {
-            return _webSocketIoConnectionManager.JoinAsync(roomKey, this);
+            return _webSocketIoConnectionManager.JoinAsync(channelKey, this);
         }
 
         /// <inheritdoc cref="LeaveAsync"/>
-        public Task LeaveAsync(string roomKey)
+        public Task LeaveAsync(string channelKey)
         {
-            return _webSocketIoConnectionManager.LeaveAsync(roomKey, this);
+            return _webSocketIoConnectionManager.LeaveAsync(channelKey, this);
         }
 
         /// <inheritdoc cref="LeaveAllAsync"/>
