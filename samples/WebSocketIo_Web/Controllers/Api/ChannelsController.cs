@@ -9,12 +9,12 @@ using Ntreev.AspNetCore.WebSocketIo.Mvc;
 namespace WebSocketIo_Web.Controllers.Api
 {
     [Route("/api/channels/{channelName}")]
-    public class ChannelsIoController : WebSocketIoController
+    public class ChannelsController : WebSocketIoController
     {
         private readonly IWebSocketIo _webSocketIo;
         private readonly IWebSocketIoPacket _packet;
 
-        public ChannelsIoController(IWebSocketIo webSocketIo,
+        public ChannelsController(IWebSocketIo webSocketIo,
             IWebSocketIoPacket packet) : base(webSocketIo)
         {
             _webSocketIo = webSocketIo;
