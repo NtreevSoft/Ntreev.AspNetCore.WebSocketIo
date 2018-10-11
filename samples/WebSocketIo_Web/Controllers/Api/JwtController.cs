@@ -14,6 +14,7 @@ using WebSocketIo_Web.Models;
 namespace WebSocketIo_Web.Controllers.Api
 {
     [Route("/api/jwt")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationScheme)]
     public class JwtController : WebSocketIoController
     {
         private readonly IWebSocketIo _webSocketIo;
@@ -27,6 +28,7 @@ namespace WebSocketIo_Web.Controllers.Api
         }
 
         [Route("login")]
+        [AllowAnonymous]
         public IActionResult Login(LoginModel model)
         {
             return Ok(new
@@ -35,23 +37,13 @@ namespace WebSocketIo_Web.Controllers.Api
             });
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationScheme)]
-        [Route("authorized-action")]
-        public IActionResult AuthorizedAction()
+        [Route("me")]
+        public IActionResult Me()
         {
             return Ok(new
             {
-                Result = "ok"
-            });
-        }
-
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + "," + WebSocketIoDefaults.AuthenticationScheme)]
-        [Route("authorized-action2")]
-        public IActionResult AuthorizedAction2()
-        {
-            return Ok(new
-            {
-                Result2 = "ok"
+                Name = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                Email = User.FindFirstValue(ClaimTypes.Email)
             });
         }
 
@@ -59,8 +51,8 @@ namespace WebSocketIo_Web.Controllers.Api
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "admin@ntreev.com"),
-                new Claim(ClaimTypes.NameIdentifier, "admin")
+                new Claim(ClaimTypes.NameIdentifier, "admin"),
+                new Claim(JwtRegisteredClaimNames.Email, "admin@ntreev.com"),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["authentication:key"]));
