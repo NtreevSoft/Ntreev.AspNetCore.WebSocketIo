@@ -24,7 +24,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         public string Path { get; set; }
 
         /// <inheritdoc cref="Headers"/>
-        public IDictionary<string, string> Headers { get; } = new Dictionary<string, string>(StringComparer.InvariantCulture);
+        public IDictionary<string, string> Headers { get; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         /// <inheritdoc cref="Data"/>
         public object Data { get; set; }
