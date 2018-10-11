@@ -16,10 +16,6 @@ Ntreev.AspNetCore.WebSocketIo 라이브러리는 이 문제를 해결하기 위해 만들어졌습니�
 3. 예외에 대한 처리 기능 제공
 4. 채널(방) 기능 제공
 
-## 제한 사항
-
-1. HttpGetAttribute, HttpPostAttribute, HttpPutAttribute, HttpDeleteAttribute 특성 대신 RouteAttribute 을 사용해야 합니다.
-
 ## 라이선스
 
 MIT License
