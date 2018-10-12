@@ -79,7 +79,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 {
                     var error = new WebSocketIoError
                     {
-                        Id = packet.Id,
+                        Id = packet?.Id,
                         Error = new WebSocketIoErrorDetail(e.Message, e.ToString())
                     };
                     await webSocketIo.Socket.SendDataAsync(error.ToJson());
