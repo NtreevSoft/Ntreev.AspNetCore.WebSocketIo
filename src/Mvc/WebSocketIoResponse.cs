@@ -1,4 +1,6 @@
-﻿namespace Ntreev.AspNetCore.WebSocketIo.Mvc
+﻿using Newtonsoft.Json;
+
+namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
     /// <summary>
     /// 웹소켓의 응답 패킷 클래스 입니다.
@@ -36,6 +38,7 @@
         /// <summary>
         /// 서버에서 이벤트가 발생하는 경우 이벤트 이름입니다.
         /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string EmitName { get; }
 
         /// <summary>
