@@ -33,6 +33,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
         /// <summary>
         /// 웹소켓의 요청에서 사용한 <see cref="WebSocketIoPacket.Id"/> 값입니다.
         /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; }
 
         /// <summary>
