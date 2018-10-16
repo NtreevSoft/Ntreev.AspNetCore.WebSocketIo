@@ -18,7 +18,7 @@ Ntreev.AspNetCore.WebSocketIo 라이브러리는 이 문제를 해결하기 위해 만들어졌습니�
 
 ## 문서
 
-[이 링크](http://gamma:10080/devhq/Ntreev.AspNetCore.WebSocketIo/wikis/home)를 클릭하여 문서를 확인 하십시오.
+[이 링크](https://github.com/NtreevSoft/Ntreev.AspNetCore.WebSocketIo/wiki)를 클릭하여 문서를 확인 하십시오.
 
 ## 라이선스
 
