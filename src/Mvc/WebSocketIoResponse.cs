@@ -7,6 +7,8 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
     /// </summary>
     public class WebSocketIoResponse
     {
+        public WebSocketIoResponse() { }
+
         public WebSocketIoResponse(string id, object data) : this(id, 200, data)
         {
         }
@@ -34,28 +36,28 @@ namespace Ntreev.AspNetCore.WebSocketIo.Mvc
         /// 웹소켓의 요청에서 사용한 <see cref="WebSocketIoPacket.Id"/> 값입니다.
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string Id { get; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 서버에서 이벤트가 발생하는 경우 이벤트 이름입니다.
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string EmitName { get; }
+        public string EmitName { get; set; }
 
         /// <summary>
         /// 서버의 메시지의 타입 입니다.
         /// </summary>
-        public WebSocketIoResponseType Type { get; }
+        public WebSocketIoResponseType Type { get; set; }
 
         /// <summary>
         /// 상태 코드입니다. 대체로 HTTP 의 상태 코드의 값이 사용될 수 있습니다.
         /// </summary>
-        public int? StatusCode { get; }
+        public int? StatusCode { get; set; }
 
         /// <summary>
         /// 서버에서 전송하는 데이터 입니다.
         /// </summary>
-        public object Data { get; }
+        public object Data { get; set; }
 
         public static WebSocketIoResponse CreateMessage(IWebSocketIoPacket packet, object data)
         {
