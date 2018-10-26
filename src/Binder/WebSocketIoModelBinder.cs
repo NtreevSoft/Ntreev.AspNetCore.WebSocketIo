@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -34,7 +35,10 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
                 var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
                 if (valueProviderResult != ValueProviderResult.None)
                 {
-                    bindingContext.Result = ModelBindingResult.Success(valueProviderResult.FirstValue);
+                    var converter = TypeDescriptor.GetConverter(bindingContext.ModelType);
+                    var convertedObject = converter.ConvertFrom(valueProviderResult.FirstValue);
+
+                    bindingContext.Result = ModelBindingResult.Success(convertedObject);
                     return Task.CompletedTask;
                 }
 
@@ -71,7 +75,10 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
                     var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
                     if (valueProviderResult == ValueProviderResult.None) return Task.CompletedTask;
 
-                    bindingContext.Result = ModelBindingResult.Success(valueProviderResult.FirstValue);
+                    var converter = TypeDescriptor.GetConverter(bindingContext.ModelType);
+                    var convertedObject = converter.ConvertFrom(valueProviderResult.FirstValue);
+
+                    bindingContext.Result = ModelBindingResult.Success(convertedObject);
                 }
             }
 
