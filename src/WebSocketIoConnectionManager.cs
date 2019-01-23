@@ -44,9 +44,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <inheritdoc cref="JoinAsync"/>
-        public async Task JoinAsync(string key, IWebSocketIo webSocketIo)
+        public Task JoinAsync(string key, IWebSocketIo webSocketIo)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 try
                 {
@@ -70,9 +70,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <inheritdoc cref="LeaveAsync"/>
-        public async Task LeaveAsync(string key, IWebSocketIo webSocketIo)
+        public Task LeaveAsync(string key, IWebSocketIo webSocketIo)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 try
                 {
@@ -93,9 +93,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <inheritdoc cref="LeaveAllAsync"/>
-        public async Task LeaveAllAsync(IWebSocketIo webSocketIo)
+        public Task LeaveAllAsync(IWebSocketIo webSocketIo)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 try
                 {
@@ -120,9 +120,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <inheritdoc cref="DisposeAsync"/>
-        public async Task DisposeAsync(IWebSocketIo webSocketIo)
+        public Task DisposeAsync(IWebSocketIo webSocketIo)
         {
-            await Task.Run(async () =>
+            return Task.Run(async () =>
             {
                 try
                 {
