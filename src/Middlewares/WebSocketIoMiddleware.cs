@@ -10,7 +10,7 @@ using Ntreev.AspNetCore.WebSocketIo.Http;
 namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
 {
     /// <summary>
-    /// À¥¼ÒÄÏ ¿¬°á¿¡ ´ëÇÑ ÀÔÃâ·Â°ú ¶óÀÌÇÁ»çÀÌÅ¬À» ´ã´çÇÏ´Â ¹Ìµé¿ş¾î Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì›¹ì†Œì¼“ ì—°ê²°ì— ëŒ€í•œ ì…ì¶œë ¥ê³¼ ë¼ì´í”„ì‚¬ì´í´ì„ ë‹´ë‹¹í•˜ëŠ” ë¯¸ë“¤ì›¨ì–´ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public class WebSocketIoMiddleware
     {
@@ -28,7 +28,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
         {
             if (!context.WebSockets.IsWebSocketRequest)
             {
-                // HTTP ¿¬°áÀÎ °æ¿ì ÀÏÈ¸¿ëÀ¸·Î »ç¿ëÇÒ ºó À¥¼ÒÄÏ °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
+                // HTTP ì—°ê²°ì¸ ê²½ìš° ì¼íšŒìš©ìœ¼ë¡œ ì‚¬ìš©í•  ë¹ˆ ì›¹ì†Œì¼“ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
                 var httpWebSocketIoId = Guid.NewGuid();
                 var httpWebSocketIo = new WebSocketIo(httpWebSocketIoId, new EmptyWebSocket(), _webSocketIoConnectionManager);
                 context.Items["web-socket-io"] = httpWebSocketIo;

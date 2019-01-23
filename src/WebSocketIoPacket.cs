@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// À¥¼ÒÄÏÀÇ ¿äÃ» ÆĞÅ¶ Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì›¹ì†Œì¼“ì˜ ìš”ì²­ íŒ¨í‚· í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public class WebSocketIoPacket : IWebSocketIoPacket
     {

@@ -9,97 +9,97 @@ using Ntreev.AspNetCore.WebSocketIo.Mvc;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ю╔╪рдо ╠Б╢ию╩ а╕╟Ьго╢б юнемфДюл╫╨ ют╢о╢ы.
+    /// Л⌡╧Л├▄Л╪⌠ Й╦╟К┼╔Л²└ Л═°ЙЁ╣М∙≤К┼■ Л²╦М└╟М▌≤Л²╢Л┼╓ Л·┘К▀┬К▀╓.
     /// </summary>
     public interface IWebSocketIo
     {
         /// <summary>
-        /// ю╔╪рдоюг Id
+        /// Л⌡╧Л├▄Л╪⌠Л²≤ Id
         /// </summary>
         Guid SocketId { get; }
 
         /// <summary>
-        /// <see cref="WebSocket"/> ╟╢ц╪
+        /// <see cref="WebSocket"/> Й╟²Л╡╢
         /// </summary>
         WebSocket Socket { get; }
 
         /// <summary>
-        /// ╨Й╥н╣ЕдЁ╫╨ф╝ ╦ч╫цаЖ ╨Т╢У ют╢о╢ы.
+        /// К╦▄К║°К⌠°Л╨░Л┼╓М┼╦ К╘■Л▀°Л╖─ К╧▄К█■ Л·┘К▀┬К▀╓.
         /// </summary>
         IBroadcastBuilder Broadcast { get; }
 
         /// <summary>
-        /// ╨Я╧п ╦ч╫цаЖ╦╕ ╨╦Ё╩╠Б ю╖гя ╨Т╢У ют╢о╢ы.
+        /// К╧└К╟─ К╘■Л▀°Л╖─К╔╪ КЁ╢К┌╢Й╦╟ Л°└М∙° К╧▄К█■ Л·┘К▀┬К▀╓.
         /// </summary>
         IPrivateBuilder Private { get; }
 
         /// <summary>
-        /// ю╔╪рдоюл ╪р╪с╣х ц╓Ён(╧Ф) ╦Я╥о ют╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²╢ Л├▄Л├█К░° Л╠└К└░(К╟╘) К╙╘К║² Л·┘К▀┬К▀╓.
         /// </summary>
         IList<string> JoinedChannels { get; }
 
         /// <summary>
-        /// ю╔╪рдо ©╛╟Аюл ╡В╠Б╟еЁ╙ ╩Г©Кюз╟║ ╤╟Ё╙╦И ╧ъ╩Щго╢б юл╨╔ф╝ ют╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠ Л≈╟Й╡╟Л²╢ К│┼Й╦╟Й╠╟К┌≤ Л┌╛Л ╘Л·░Й╟─ К√═К┌≤К╘╢ К╟°Л┐²М∙≤К┼■ Л²╢К╡╓М┼╦ Л·┘К▀┬К▀╓.
         /// </summary>
         event EventHandler<WebSocketIoEventArgs> Leaved;
 
         /// <summary>
-        /// ю╔╪рдо ©╛╟Аюл ╡В╠Б╟еЁ╙ ╩Г©Кюз╟║ ╤╟Ё╙╠Б юЭ©║ ╧ъ╩Щго╢б юл╨╔ф╝ ют╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠ Л≈╟Й╡╟Л²╢ К│┼Й╦╟Й╠╟К┌≤ Л┌╛Л ╘Л·░Й╟─ К√═К┌≤Й╦╟ Л═└Л≈░ К╟°Л┐²М∙≤К┼■ Л²╢К╡╓М┼╦ Л·┘К▀┬К▀╓.
         /// </summary>
         event EventHandler Disconnecting;
 
         /// <summary>
-        /// <see cref="Leaved"/> юл╨╔ф╝╦╕ ╧ъ╩Щгу╢о╢ы.
+        /// <see cref="Leaved"/> Л²╢К╡╓М┼╦К╔╪ К╟°Л┐²М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="sender">Sender</param>
-        /// <param name="args">╦е╟Ё╨╞╪Ж</param>
+        /// <param name="args">К╖╓Й╟°КЁ─Л┬≤</param>
         void OnLeaved(object sender, WebSocketIoEventArgs args);
 
         /// <summary>
-        /// <see cref="Disconnecting"/> юл╨╔ф╝╦╕ ╧ъ╩Щгу╢о╢ы.
+        /// <see cref="Disconnecting"/> Л²╢К╡╓М┼╦К╔╪ К╟°Л┐²М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="sender">Sender</param>
         void OnDisconnecting(object sender);
 
         /// <summary>
-        /// е╛╤Сюл╬Пф╝©║╟т ╣╔юлем╦╕ юЭ╪шгу╢о╢ы.
+        /// М│╢К²╪Л²╢Л√╦М┼╦Л≈░Й╡▄ К█╟Л²╢М└╟К╔╪ Л═└Л├║М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="data">╣╔юлем</param>
-        /// <param name="endOfMessage">╦ч╫цаЖюг Ё║юнаЖ ╬ф╢яаЖ ©╘╨нют╢о╢ы.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/> ют╢о╢ы.</param>
+        /// <param name="data">К█╟Л²╢М└╟</param>
+        /// <param name="endOfMessage">К╘■Л▀°Л╖─Л²≤ К│²Л²╦Л╖─ Л∙└К▀▄Л╖─ Л≈╛К╤─Л·┘К▀┬К▀╓.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> Л·┘К▀┬К▀╓.</param>
         Task SendDataAsync(string data, bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// е╛╤Сюл╬Пф╝©║╟т ╣╔юлем ╟╢ц╪╦╕ юЭ╪шгу╢о╢ы.
+        /// М│╢К²╪Л²╢Л√╦М┼╦Л≈░Й╡▄ К█╟Л²╢М└╟ Й╟²Л╡╢К╔╪ Л═└Л├║М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="obj">╣╔юлем ╟╢ц╪</param>
-        /// <param name="endOfMessage">╦ч╫цаЖюг Ё║юнаЖ ╬ф╢яаЖ ©╘╨нют╢о╢ы.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/> ют╢о╢ы.</param>
+        /// <param name="obj">К█╟Л²╢М└╟ Й╟²Л╡╢</param>
+        /// <param name="endOfMessage">К╘■Л▀°Л╖─Л²≤ К│²Л²╦Л╖─ Л∙└К▀▄Л╖─ Л≈╛К╤─Л·┘К▀┬К▀╓.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> Л·┘К▀┬К▀╓.</param>
         /// <returns></returns>
         Task SendDataAsync(object obj, bool endOfMessage = true, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// е╛╤Сюл╬Пф╝©║╟т ю╔╪рдо юю╢Д фпе╤ю╩ юЭ╪шгу╢о╢ы.
+        /// М│╢К²╪Л²╢Л√╦М┼╦Л≈░Й╡▄ Л⌡╧Л├▄Л╪⌠ Л²▒К▀╣ М▄╗М┌╥Л²└ Л═└Л├║М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="response">ю╔╪рдо юю╢Д фпе╤ ют╢о╢ы.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/> ют╢о╢ы.</param>
+        /// <param name="response">Л⌡╧Л├▄Л╪⌠ Л²▒К▀╣ М▄╗М┌╥ Л·┘К▀┬К▀╓.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> Л·┘К▀┬К▀╓.</param>
         /// <returns></returns>
         Task SendDataAsync(WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// е╛╤Сюл╬Пф╝╟║ ц╓Ён(╧Ф)ю╦╥н а╒╪сгу╢о╢ы.
+        /// М│╢К²╪Л²╢Л√╦М┼╦Й╟─ Л╠└К└░(К╟╘)Л°╪К║° Л═▒Л├█М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="channelKey">ц╓Ён(╧Ф) юл╦╖ют╢о╢ы.</param>
+        /// <param name="channelKey">Л╠└К└░(К╟╘) Л²╢К╕└Л·┘К▀┬К▀╓.</param>
         Task JoinAsync(string channelKey);
 
         /// <summary>
-        /// ц╓Ён(╧Ф)©║╪╜ е╛╤Сюл╬Пф╝╦╕ а╕╟егу╢о╢ы.
+        /// Л╠└К└░(К╟╘)Л≈░Л└° М│╢К²╪Л²╢Л√╦М┼╦К╔╪ Л═°Й╠╟М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="channelKey">ц╓Ён(╧Ф) юл╦╖ют╢о╢ы.</param>
+        /// <param name="channelKey">Л╠└К└░(К╟╘) Л²╢К╕└Л·┘К▀┬К▀╓.</param>
         Task LeaveAsync(string channelKey);
 
         /// <summary>
-        /// ╦П╣Г ц╓Ён(╧Ф)©║╪╜ е╛╤Сюл╬Пф╝╦╕ а╕╟егу╢о╢ы.
+        /// К╙╗К⌠═ Л╠└К└░(К╟╘)Л≈░Л└° М│╢К²╪Л²╢Л√╦М┼╦К╔╪ Л═°Й╠╟М∙╘К▀┬К▀╓.
         /// </summary>
         Task LeaveAllAsync();
 

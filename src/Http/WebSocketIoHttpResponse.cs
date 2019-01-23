@@ -9,11 +9,11 @@ using Microsoft.Extensions.ObjectPool;
 namespace Ntreev.AspNetCore.WebSocketIo.Http
 {
     /// <summary>
-    /// À¥¼ÒÄÏÀ» Áö¿øÇÏ±â À§ÇÑ <see cref="HttpResponse"/> Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì›¹ì†Œì¼“ì„ ì§€ì›í•˜ê¸° ìœ„í•œ <see cref="HttpResponse"/> í´ëž˜ìŠ¤ ìž…ë‹ˆë‹¤.
     /// <remarks>
-    /// À¥¼ÒÄÏÀÇ Æ¯¼º »ó ÇÑ¹øÀÇ HTTP ¾÷±×·¹ÀÌµå¸¦ À§ÇØ HTTP ¸¦ ¿äÃ»ÇÏ°í, ¼ÒÄÏÀÌ ¿¬°áÀÌ µÈ´Ù.
-    /// ASP.NET Core ´Â Response °¡ ½ÃÀÛµÇ¸é ´Ù½Ã ÀÌ Response ¸¦ ¼öÁ¤ÇÒ ¼ö ¾ø°í ¿¹¿Ü°¡ ¹ß»ýÇÏ°Ô µÈ´Ù.
-    /// À¥¼ÒÄÏ ¿¬°áÀÎ °æ¿ì ¿¹¿Ü ¹ß»ýÀ» ¹æÁöÇÏ±â À§ÇØ <see cref="WebSocketIoHttpResponse"/> Å¬·¡½º¸¦ »ç¿ëÇØ¾ß ÇÑ´Ù.
+    /// ì›¹ì†Œì¼“ì˜ íŠ¹ì„± ìƒ í•œë²ˆì˜ HTTP ì—…ê·¸ë ˆì´ë“œë¥¼ ìœ„í•´ HTTP ë¥¼ ìš”ì²­í•˜ê³ , ì†Œì¼“ì´ ì—°ê²°ì´ ëœë‹¤.
+    /// ASP.NET Core ëŠ” Response ê°€ ì‹œìž‘ë˜ë©´ ë‹¤ì‹œ ì´ Response ë¥¼ ìˆ˜ì •í•  ìˆ˜ ì—†ê³  ì˜ˆì™¸ê°€ ë°œìƒí•˜ê²Œ ëœë‹¤.
+    /// ì›¹ì†Œì¼“ ì—°ê²°ì¸ ê²½ìš° ì˜ˆì™¸ ë°œìƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ <see cref="WebSocketIoHttpResponse"/> í´ëž˜ìŠ¤ë¥¼ ì‚¬ìš©í•´ì•¼ í•œë‹¤.
     /// </remarks>
     /// </summary>
     public class WebSocketIoHttpResponse : DefaultHttpResponse

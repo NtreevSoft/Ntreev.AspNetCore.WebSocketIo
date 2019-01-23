@@ -10,12 +10,12 @@ using Ntreev.AspNetCore.WebSocketIo.Filters;
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {
     /// <summary>
-    /// <see cref="IServiceCollection"/> ÀÎÅÍÆäÀÌ½ºÀÇ È®Àå ¸Ş¼­µå Å¬·¡½º ÀÔ´Ï´Ù.
+    /// <see cref="IServiceCollection"/> ì¸í„°í˜ì´ìŠ¤ì˜ í™•ì¥ ë©”ì„œë“œ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public static class IServiceCollectionExtension
     {
         /// <summary>
-        /// ASP.NET Core Mvc ±â´É°ú ÇÔ²² WebSocketIo ±â´ÉÀ» Ãß°¡ÇÕ´Ï´Ù.
+        /// ASP.NET Core Mvc ê¸°ëŠ¥ê³¼ í•¨ê»˜ WebSocketIo ê¸°ëŠ¥ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/></param>
         public static IMvcBuilder AddMvcWithWebSocketIo(this IServiceCollection services)
@@ -24,10 +24,10 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         }
 
         /// <summary>
-        /// ASP.NET Core Mvc ±â´É°ú ÇÔ²² WebSocketIo ±â´ÉÀ» Ãß°¡ÇÕ´Ï´Ù.
+        /// ASP.NET Core Mvc ê¸°ëŠ¥ê³¼ í•¨ê»˜ WebSocketIo ê¸°ëŠ¥ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/></param>
-        /// <param name="setupAction">¿É¼Ç ¼³Á¤</param>
+        /// <param name="setupAction">ì˜µì…˜ ì„¤ì •</param>
         public static IMvcBuilder AddMvcWithWebSocketIo(this IServiceCollection services, Action<MvcOptions> setupAction)
         {
             setupAction = setupAction + (options =>

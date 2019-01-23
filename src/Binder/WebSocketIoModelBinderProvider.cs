@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
     /// <summary>
-    /// <see cref="WebSocketIoController"/> ÀÇ ³ëÃâµÇ´Â API ¸¦ È£ÃâÇÏ±â À§ÇÑ ¹ÙÀÎ´õ¸¦ Á¦°øÇÕ´Ï´Ù.
+    /// <see cref="WebSocketIoController"/> ì˜ ë…¸ì¶œë˜ëŠ” API ë¥¼ í˜¸ì¶œí•˜ê¸° ìœ„í•œ ë°”ì¸ë”ë¥¼ ì œê³µí•©ë‹ˆë‹¤.
     /// </summary>
     public class WebSocketIoModelBinderProvider : IModelBinderProvider
     {

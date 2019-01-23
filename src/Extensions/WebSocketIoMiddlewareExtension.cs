@@ -4,14 +4,14 @@ using Ntreev.AspNetCore.WebSocketIo.Middlewares;
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {
     /// <summary>
-    /// WebSocketIo ¹Ìµé¿ş¾î È®Àå ¸Ş¼­µå Å¬·¡½º ÀÔ´Ï´Ù.
+    /// WebSocketIo ë¯¸ë“¤ì›¨ì–´ í™•ì¥ ë©”ì„œë“œ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public static class WebSocketIoMiddlewareExtension
     {
         /// <summary>
-        /// WebSocketIo ¹Ìµé¿ş¾î¸¦ »ç¿ëÇÕ´Ï´Ù.
+        /// WebSocketIo ë¯¸ë“¤ì›¨ì–´ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.
         /// </summary>
-        /// <param name="builder"><see cref="IApplicationBuilder"/> °´Ã¼ ÀÔ´Ï´Ù.</param>
+        /// <param name="builder"><see cref="IApplicationBuilder"/> ê°ì²´ ì…ë‹ˆë‹¤.</param>
         public static IApplicationBuilder UseWebSocketIo(this IApplicationBuilder builder)
         {
             builder.UseMiddleware<WebSocketIoMiddleware>();

@@ -6,7 +6,7 @@ using Ntreev.AspNetCore.WebSocketIo.Extensions;
 namespace Ntreev.AspNetCore.WebSocketIo.Mvc
 {
     /// <summary>
-    /// Ok ╩Себ╦╕ Ё╙е╦Ё╩╢б е╛╥║╫╨ ют╢о╢ы.
+    /// Ok Л┐│М┐°К╔╪ К┌≤М┐─К┌╢К┼■ М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// </summary>
     public class WebSocketIoOkResult : OkResult
     {

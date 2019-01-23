@@ -10,7 +10,7 @@ using Ntreev.AspNetCore.WebSocketIo.Mvc;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ю╔╪рдо ╠Б╢ию╩ а╕╟Ьго╢б е╛╥║╫╨ ют╢о╢ы.
+    /// Л⌡╧Л├▄Л╪⌠ Й╦╟К┼╔Л²└ Л═°ЙЁ╣М∙≤К┼■ М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// </summary>
     public class WebSocketIo : IWebSocketIo
     {

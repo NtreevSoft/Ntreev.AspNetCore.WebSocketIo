@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http.Features;
 namespace Ntreev.AspNetCore.WebSocketIo.Http
 {
     /// <summary>
-    /// À¥¼ÒÄÏÀ» Áö¿øÇÏ±â À§ÇÑ <see cref="HttpContext"/> Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì›¹ì†Œì¼“ì„ ì§€ì›í•˜ê¸° ìœ„í•œ <see cref="HttpContext"/> í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public class WebSocketIoHttpContext : HttpContext
     {

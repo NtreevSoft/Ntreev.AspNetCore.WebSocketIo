@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {
     /// <summary>
-    /// À¥¼ÒÄÏ °´Ã¼ÀÇ È®Àå ¸Ş¼­µå Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì›¹ì†Œì¼“ ê°ì²´ì˜ í™•ì¥ ë©”ì„œë“œ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     public static class WebSocketExtension
     {
         /// <summary>
-        /// À¥¼ÒÄÏÀÇ µ¥ÀÌÅÍ¸¦ ÀĞ½À´Ï´Ù.
+        /// ì›¹ì†Œì¼“ì˜ ë°ì´í„°ë¥¼ ì½ìŠµë‹ˆë‹¤.
         /// </summary>
-        /// <param name="socket"><see cref="WebSocket"/> °´Ã¼ ÀÔ´Ï´Ù.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/> ÀÔ´Ï´Ù.</param>
+        /// <param name="socket"><see cref="WebSocket"/> ê°ì²´ ì…ë‹ˆë‹¤.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> ì…ë‹ˆë‹¤.</param>
         public static async Task<string> ReadDataAsync(this WebSocket socket,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -40,12 +40,12 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         }
 
         /// <summary>
-        /// Å¬¶óÀÌ¾ğÆ®·Î µ¥ÀÌÅÍ¸¦ º¸³À´Ï´Ù.
+        /// í´ë¼ì´ì–¸íŠ¸ë¡œ ë°ì´í„°ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
         /// </summary>
-        /// <param name="socket"><see cref="WebSocket"/> °´Ã¼ ÀÔ´Ï´Ù.</param>
-        /// <param name="data">¹®ÀÚ¿­ µ¥ÀÌÅÍ ÀÔ´Ï´Ù.</param>
-        /// <param name="endOfMessage">ÇöÀç ¸Ş½ÃÁö°¡ µ¥ÀÌÅÍÀÇ ³¡ÀÎÁö ¾Æ´ÑÁö ¿©ºÎÀÔ´Ï´Ù.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/> ÀÔ´Ï´Ù.</param>
+        /// <param name="socket"><see cref="WebSocket"/> ê°ì²´ ì…ë‹ˆë‹¤.</param>
+        /// <param name="data">ë¬¸ìì—´ ë°ì´í„° ì…ë‹ˆë‹¤.</param>
+        /// <param name="endOfMessage">í˜„ì¬ ë©”ì‹œì§€ê°€ ë°ì´í„°ì˜ ëì¸ì§€ ì•„ë‹Œì§€ ì—¬ë¶€ì…ë‹ˆë‹¤.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/> ì…ë‹ˆë‹¤.</param>
         public static async Task SendDataAsync(this WebSocket socket, string data, bool endOfMessage = true,
             CancellationToken cancellationToken = default(CancellationToken))
         {

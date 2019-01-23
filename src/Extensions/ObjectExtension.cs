@@ -4,12 +4,12 @@ using Newtonsoft.Json.Serialization;
 namespace Ntreev.AspNetCore.WebSocketIo.Extensions
 {
     /// <summary>
-    /// ¿ÀºêÁ§Æ®ÀÇ È®Àå ¸Ş¼­µå Å¬·¡½º ÀÔ´Ï´Ù.
+    /// ì˜¤ë¸Œì íŠ¸ì˜ í™•ì¥ ë©”ì„œë“œ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
     /// </summary>
     internal static class ObjectExtension
     {
         /// <summary>
-        /// ±âº»ÀûÀÎ JSON Á÷·ÄÈ­ ¿É¼Ç ÀÔ´Ï´Ù.
+        /// ê¸°ë³¸ì ì¸ JSON ì§ë ¬í™” ì˜µì…˜ ì…ë‹ˆë‹¤.
         /// </summary>
         static readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
         {
@@ -17,10 +17,10 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         };
 
         /// <summary>
-        /// JSON Á÷·ÄÈ­ ÇÕ´Ï´Ù.
+        /// JSON ì§ë ¬í™” í•©ë‹ˆë‹¤.
         /// </summary>
-        /// <param name="obj">´ë»ó °´Ã¼ ÀÔ´Ï´Ù.</param>
-        /// <param name="settings">Á÷·ÄÈ­ ¿É¼ÇÀÔ´Ï´Ù. ÀÌ °ªÀÌ ÁöÁ¤µÇÁö ¾ÊÀ¸¸é <see cref="jsonSerializerSettings"/> °ªÀ» ÀÌ¿ëÇÕ´Ï´Ù.</param>
+        /// <param name="obj">ëŒ€ìƒ ê°ì²´ ì…ë‹ˆë‹¤.</param>
+        /// <param name="settings">ì§ë ¬í™” ì˜µì…˜ì…ë‹ˆë‹¤. ì´ ê°’ì´ ì§€ì •ë˜ì§€ ì•Šìœ¼ë©´ <see cref="jsonSerializerSettings"/> ê°’ì„ ì´ìš©í•©ë‹ˆë‹¤.</param>
         /// <returns></returns>
         internal static string ToJson(this object obj, JsonSerializerSettings settings = null)
         {

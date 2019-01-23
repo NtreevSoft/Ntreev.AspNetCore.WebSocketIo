@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ╨С ю╔╪рдо е╛╥║╫╨ ют╢о╢ы.
+    /// К╧┬ Л⌡╧Л├▄Л╪⌠ М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// <remarks>
-    /// HTTP ©Дц╩юн ╟Ф©Л╦╦ юл <see cref="EmptyWebSocket"/> ╟╢ц╪╦╕ ╩Щ╪╨гь╪╜ ╩Г©Кгу╢о╢ы. HTTP юн ╟Ф©Л WebSocketIo ©║╪╜ API хёх╞╪╨ю╩ ю╖гь ╩Г©Кго╢б е╛╥║╫╨ ют╢о╢ы.
+    /// HTTP Л ■Л╡╜Л²╦ Й╡╫Л ╟К╖▄ Л²╢ <see cref="EmptyWebSocket"/> Й╟²Л╡╢К╔╪ Л┐²Л└╠М∙╢Л└° Л┌╛Л ╘М∙╘К▀┬К▀╓. HTTP Л²╦ Й╡╫Л ╟ WebSocketIo Л≈░Л└° API М≤╦М≥≤Л└╠Л²└ Л°└М∙╢ Л┌╛Л ╘М∙≤К┼■ М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// </remarks>
     /// </summary>
     public class EmptyWebSocket : WebSocket

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ю╔╪рдою╩ ╟Э╦╝го╢б ╦е╢оюЗ е╛╥║╫╨ ют╢о╢ы.
+    /// Л⌡╧Л├▄Л╪⌠Л²└ Й╢─К╕╛М∙≤К┼■ К╖╓К▀┬Л═─ М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// </summary>
     public class WebSocketIoConnectionManager : IWebSocketIoConnectionManager
     {

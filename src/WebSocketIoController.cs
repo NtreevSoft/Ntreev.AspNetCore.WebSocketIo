@@ -6,9 +6,9 @@ using Ntreev.AspNetCore.WebSocketIo.Mvc;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ю╔╪рдою╩ ╩Г©Кго╢б даф╝╥я╥╞©║╪╜ гй©Дгя е╛╥║╫╨ ют╢о╢ы.
+    /// Л⌡╧Л├▄Л╪⌠Л²└ Л┌╛Л ╘М∙≤К┼■ Л╩╗М┼╦К║╓К÷╛Л≈░Л└° М∙└Л ■М∙° М│╢К·≤Л┼╓ Л·┘К▀┬К▀╓.
     /// <remarks>
-    /// юл даф╝╥я╥╞╦╕ ╩С╪сго╦И HTTP/ю╔╪рдо ╦П╣н©║╪╜ ЁКцБ╣х API ╦╕ хёцБгр ╪Ж юж╫ю╢о╢ы.
+    /// Л²╢ Л╩╗М┼╦К║╓К÷╛К╔╪ Л┐│Л├█М∙≤К╘╢ HTTP/Л⌡╧Л├▄Л╪⌠ К╙╗К▒░Л≈░Л└° К┘╦Л╤°К░° API К╔╪ М≤╦Л╤°М∙═ Л┬≤ Л·┬Л┼╣К▀┬К▀╓.
     /// </remarks>
     /// </summary>
     public class WebSocketIoController : Controller
@@ -37,10 +37,10 @@ namespace Ntreev.AspNetCore.WebSocketIo
         }
 
         /// <summary>
-        /// ╪╜╧Ж©║╪╜ е╛╤Сюл╬Пф╝╥н юл╨╔ф╝╦╕ ╧ъ╩Щгу╢о╢ы.
+        /// Л└°К╡└Л≈░Л└° М│╢К²╪Л²╢Л√╦М┼╦К║° Л²╢К╡╓М┼╦К╔╪ К╟°Л┐²М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="emitName">юл╨╔ф╝ юл╦╖ ют╢о╢ы.</param>
-        /// <param name="value">юл╨╔ф╝ ╟╙ ют╢о╢ы.</param>
+        /// <param name="emitName">Л²╢К╡╓М┼╦ Л²╢К╕└ Л·┘К▀┬К▀╓.</param>
+        /// <param name="value">Л²╢К╡╓М┼╦ Й╟▓ Л·┘К▀┬К▀╓.</param>
         /// <returns></returns>
         public virtual OkObjectResult OkEvent(string emitName, object value)
         {

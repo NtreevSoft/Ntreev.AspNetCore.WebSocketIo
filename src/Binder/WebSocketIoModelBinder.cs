@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Ntreev.AspNetCore.WebSocketIo.Binder
 {
     /// <summary>
-    /// <see cref="WebSocketIoController"/> ¿¡¼­ ³ëÃâµÇ´Â API ÀÇ ¸Å°³º¯¼ö¸¦ ¹ÙÀÎµù ÇÏ´Â ¹ÙÀÎ´õ ÀÔ´Ï´Ù.
+    /// <see cref="WebSocketIoController"/> ì—ì„œ ë…¸ì¶œë˜ëŠ” API ì˜ ë§¤ê°œë³€ìˆ˜ë¥¼ ë°”ì¸ë”© í•˜ëŠ” ë°”ì¸ë” ì…ë‹ˆë‹¤.
     /// </summary>
     public class WebSocketIoModelBinder : IModelBinder
     {
@@ -42,7 +42,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Binder
                     return Task.CompletedTask;
                 }
 
-                // ¹ÙÀÎµù ¼Ò½º°¡ HTTP+Body ÀÎ °æ¿ì
+                // ë°”ì¸ë”© ì†ŒìŠ¤ê°€ HTTP+Body ì¸ ê²½ìš°
                 if (bindingContext.BindingSource == BindingSource.Body)
                 {
                     var binder = new BodyModelBinder(_options.InputFormatters, 
