@@ -31,16 +31,14 @@ namespace Ntreev.AspNetCore.WebSocketIo
             return result == false ? null : socket;
         }
 
-        /// <inheritdoc cref="RemoveAsync"/>
-        public Task RemoveAsync(Guid guid)
+        /// <inheritdoc cref="Remove"/>
+        public void Remove(Guid guid)
         {
             var socket = GetOrDefault(guid);
             if (socket != null)
             {
                 _webSocketIos.Remove(guid);
             }
-
-            return Task.CompletedTask;
         }
 
         /// <inheritdoc cref="JoinAsync"/>

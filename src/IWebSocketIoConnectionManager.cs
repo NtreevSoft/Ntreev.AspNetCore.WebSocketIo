@@ -26,7 +26,7 @@ namespace Ntreev.AspNetCore.WebSocketIo
         /// 웹소켓을 제거합니다.
         /// </summary>
         /// <param name="guid">Socket Id</param>
-        Task RemoveAsync(Guid guid);
+        void Remove(Guid guid);
 
         /// <summary>
         /// 웹소켓을 채널(방)에 추가합니다.
