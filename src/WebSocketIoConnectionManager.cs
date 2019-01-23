@@ -83,6 +83,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
                         _channels[key].Remove(webSocketIo);
                         webSocketIo.JoinedChannels.Remove(key);
                         webSocketIo.OnLeaved(this, new WebSocketIoEventArgs(key, webSocketIo));
+                        
+                        if (_channels[key].Count == 0)
+                            _channels.Remove(key);
                     }
                 }
                 finally
