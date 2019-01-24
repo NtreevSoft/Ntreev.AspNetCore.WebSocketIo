@@ -38,6 +38,8 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 _webSocketIoConnectionManager.OnConnected(this, httpWebSocketIo);
 
                 await _next(context);
+                
+                _webSocketIoConnectionManager.Remove(httpWebSocketIoId);
                 return;
             }
             

@@ -32,7 +32,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Filters
 
             // 라이프사이클이 끝나면 웹소켓 제거
             var webSocketIo = _serviceProvider.GetService<IWebSocketIo>();
-            _webSocketIoConnectionManager.RemoveAsync(webSocketIo.SocketId).GetAwaiter();
+            _webSocketIoConnectionManager.Remove(webSocketIo.SocketId);
         }
 
         /// <inheritdoc cref="IAsyncActionFilter.OnActionExecutionAsync"/>
@@ -59,7 +59,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Filters
                     await _webSocketIoConnectionManager.LeaveAsync(channel, webSocketIo);
                 }
 
-                _webSocketIoConnectionManager.RemoveAsync(webSocketIo.SocketId).GetAwaiter();
+                _webSocketIoConnectionManager.Remove(webSocketIo.SocketId);
             }
         }
     }

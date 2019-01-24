@@ -5,88 +5,88 @@ using System.Threading.Tasks;
 namespace Ntreev.AspNetCore.WebSocketIo
 {
     /// <summary>
-    /// ю╔╪рдою╩ ╟Э╦╝го╢б ╦е╢оюЗ юнемфДюл╫╨ ют╢о╢ы.
+    /// Л⌡╧Л├▄Л╪⌠Л²└ Й╢─К╕╛М∙≤К┼■ К╖╓К▀┬Л═─ Л²╦М└╟М▌≤Л²╢Л┼╓ Л·┘К▀┬К▀╓.
     /// </summary>
     public interface IWebSocketIoConnectionManager
     {
         /// <summary>
-        /// ю╔╪рдою╩ цъ╟║ гу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ Л╤■Й╟─ М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="guid">Socket Id</param>
-        /// <param name="socket"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="socket"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         void Add(Guid guid, IWebSocketIo socket);
 
         /// <summary>
-        /// ю╔╪рдою╩ ╟║а╝©и╢о╢ы. ю╔╪рдоюл ╬Ью╦╦И null ю╩ ╧щх╞ гу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ Й╟─Л═╦Л≤╣К▀┬К▀╓. Л⌡╧Л├▄Л╪⌠Л²╢ Л≈├Л°╪К╘╢ null Л²└ К╟≤М≥≤ М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="guid">Socket Id</param>
         IWebSocketIo GetOrDefault(Guid guid);
 
         /// <summary>
-        /// ю╔╪рдою╩ а╕╟егу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ Л═°Й╠╟М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="guid">Socket Id</param>
-        Task RemoveAsync(Guid guid);
+        void Remove(Guid guid);
 
         /// <summary>
-        /// ю╔╪рдою╩ ц╓Ён(╧Ф)©║ цъ╟║гу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ Л╠└К└░(К╟╘)Л≈░ Л╤■Й╟─М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="key">ц╓Ён(╧Ф) е╟ ют╢о╢ы.</param>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="key">Л╠└К└░(К╟╘) М┌╓ Л·┘К▀┬К▀╓.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         Task JoinAsync(string key, IWebSocketIo webSocketIo);
 
         /// <summary>
-        /// ю╔╪рдою╩ ц╓Ён(╧Ф)©║╪╜ а╕╟егу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ Л╠└К└░(К╟╘)Л≈░Л└° Л═°Й╠╟М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="key">ц╓Ён(╧Ф) е╟ ют╢о╢ы.</param>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="key">Л╠└К└░(К╟╘) М┌╓ Л·┘К▀┬К▀╓.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         Task LeaveAsync(string key, IWebSocketIo webSocketIo);
 
         /// <summary>
-        /// ю╔╪рдою╩ ╦П╣Г ц╓Ён╟З ╟Э╦╝ ╦Я╥о©║╪╜ а╕╟егу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²└ К╙╗К⌠═ Л╠└К└░ЙЁ╪ Й╢─К╕╛ К╙╘К║²Л≈░Л└° Л═°Й╠╟М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         Task LeaveAllAsync(IWebSocketIo webSocketIo);
 
         /// <summary>
-        /// ю╔╪рдоюг ╦╝╪р╫╨╦╕ гьа╕гу╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²≤ К╕╛Л├▄Л┼╓К╔╪ М∙╢Л═°М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         Task DisposeAsync(IWebSocketIo webSocketIo);
 
         /// <summary>
-        /// ц╓Ён(╧Ф)юг ╦П╣Г ю╔╪рдою╩ ╧щх╞гу╢о╢ы.
+        /// Л╠└К└░(К╟╘)Л²≤ К╙╗К⌠═ Л⌡╧Л├▄Л╪⌠Л²└ К╟≤М≥≤М∙╘К▀┬К▀╓.
         /// </summary>
-        /// <param name="key">ц╓Ён(╧Ф) е╟ ют╢о╢ы.</param>
+        /// <param name="key">Л╠└К└░(К╟╘) М┌╓ Л·┘К▀┬К▀╓.</param>
         IEnumerable<IWebSocketIo> GetClientsInChannel(string key);
 
         /// <summary>
-        /// ╦П╣Г ю╔╪рдою╩ ╧щх╞гу╢о╢ы.
+        /// К╙╗К⌠═ Л⌡╧Л├▄Л╪⌠Л²└ К╟≤М≥≤М∙╘К▀┬К▀╓.
         /// </summary>
         IEnumerable<IWebSocketIo> GetAll();
 
         /// <summary>
-        /// ю╔╪рдоюл ©╛╟А╣г╦И ╧ъ╩Щго╢б юл╨╔ф╝ ют╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²╢ Л≈╟Й╡╟К░≤К╘╢ К╟°Л┐²М∙≤К┼■ Л²╢К╡╓М┼╦ Л·┘К▀┬К▀╓.
         /// </summary>
         event EventHandler<IWebSocketIo> Connected;
 
         /// <summary>
-        /// ю╔╪рдоюл ©╛╟А гьа╕╣г╦И ╧ъ╩Щго╢б юл╨╔ф╝ ют╢о╢ы.
+        /// Л⌡╧Л├▄Л╪⌠Л²╢ Л≈╟Й╡╟ М∙╢Л═°К░≤К╘╢ К╟°Л┐²М∙≤К┼■ Л²╢К╡╓М┼╦ Л·┘К▀┬К▀╓.
         /// </summary>
         event EventHandler<IWebSocketIo> Disconnected;
 
         /// <summary>
-        /// <see cref="Connected"/> юл╨╔ф╝╦╕ ╧ъ╩Щгу╢о╢ы.
+        /// <see cref="Connected"/> Л²╢К╡╓М┼╦К╔╪ К╟°Л┐²М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="sender">Sender</param>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         void OnConnected(object sender, IWebSocketIo webSocketIo);
 
         /// <summary>
-        /// <see cref="Disconnected"/> юл╨╔ф╝╦╕ ╧ъ╩Щгу╢о╢ы.
+        /// <see cref="Disconnected"/> Л²╢К╡╓М┼╦К╔╪ К╟°Л┐²М∙╘К▀┬К▀╓.
         /// </summary>
         /// <param name="sender">Sender</param>
-        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> ╟╢ц╪ ют╢о╢ы.</param>
+        /// <param name="webSocketIo"><see cref="IWebSocketIo"/> Й╟²Л╡╢ Л·┘К▀┬К▀╓.</param>
         void OnDisconnected(object sender, IWebSocketIo webSocketIo);
     }
 }

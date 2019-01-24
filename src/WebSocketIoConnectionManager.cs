@@ -31,16 +31,14 @@ namespace Ntreev.AspNetCore.WebSocketIo
             return result == false ? null : socket;
         }
 
-        /// <inheritdoc cref="RemoveAsync"/>
-        public Task RemoveAsync(Guid guid)
+        /// <inheritdoc cref="Remove"/>
+        public void Remove(Guid guid)
         {
             var socket = GetOrDefault(guid);
             if (socket != null)
             {
                 _webSocketIos.Remove(guid);
             }
-
-            return Task.CompletedTask;
         }
 
         /// <inheritdoc cref="JoinAsync"/>
@@ -83,6 +81,9 @@ namespace Ntreev.AspNetCore.WebSocketIo
                         _channels[key].Remove(webSocketIo);
                         webSocketIo.JoinedChannels.Remove(key);
                         webSocketIo.OnLeaved(this, new WebSocketIoEventArgs(key, webSocketIo));
+                        
+                        if (_channels[key].Count == 0)
+                            _channels.Remove(key);
                     }
                 }
                 finally
