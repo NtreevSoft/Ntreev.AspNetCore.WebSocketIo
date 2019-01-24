@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -80,7 +81,7 @@ namespace Ntreev.AspNetCore.WebSocketIo.Extensions
         public static async Task SendDataAsync(this IEnumerable<IWebSocketIo> webSocketIos,
             WebSocketIoResponse response, CancellationToken cancellationToken = default(CancellationToken))
         {
-            foreach (var webSocketIo in webSocketIos)
+            foreach (var webSocketIo in webSocketIos.ToList())
             {
                 await SendDataAsync(webSocketIo, response, true, cancellationToken);
             }
