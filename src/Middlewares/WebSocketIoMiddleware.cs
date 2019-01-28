@@ -2,6 +2,7 @@ using System;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Ntreev.AspNetCore.WebSocketIo.Extensions;
@@ -37,7 +38,22 @@ namespace Ntreev.AspNetCore.WebSocketIo.Middlewares
                 _webSocketIoConnectionManager.Add(httpWebSocketIoId, httpWebSocketIo);
                 _webSocketIoConnectionManager.OnConnected(this, httpWebSocketIo);
 
-                await _next(context);
+                try
+                {
+                    await _next(context);
+                }
+                catch (Exception e)
+                {
+                    var error = new WebSocketIoError
+                    {
+                        Id = "",
+                        Error = new WebSocketIoErrorDetail(e.Message, e.ToString())
+                    };
+                    context.Response.Clear();
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(error.ToJson());
+                }
                 
                 _webSocketIoConnectionManager.Remove(httpWebSocketIoId);
                 return;
